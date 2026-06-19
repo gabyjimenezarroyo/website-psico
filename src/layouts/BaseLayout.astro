@@ -1,0 +1,77 @@
+---
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import { canonical, site } from "@utils/site";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
+  canonicalPath?: string;
+}
+
+const {
+  title = "Gabriela Jimenez | Psicologa especialista en libertad emocional",
+  description = site.description,
+  image = "/images/gabriela-therapy-space.png",
+  type = "website",
+  canonicalPath = Astro.url.pathname,
+} = Astro.props;
+const pageTitle = title.includes(site.professionalName) ? title : `${title} | ${site.professionalName}`;
+const canonicalUrl = canonical(canonicalPath);
+const imageUrl = new URL(image, site.url).toString();
+const psychologistSchema = {
+  "@context": "https://schema.org",
+  "@type": "Psychologist",
+  name: site.professionalName,
+  description: site.description,
+  url: site.url,
+  image: imageUrl,
+  telephone: site.phone,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Ciudad de Guatemala",
+    addressCountry: "GT",
+  },
+  areaServed: ["Guatemala", "Online"],
+  knowsAbout: [
+    "abuso emocional",
+    "dependencia emocional",
+    "codependencia",
+    "manipulacion",
+    "ansiedad",
+    "terapia cognitivo conductual",
+  ],
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="theme-color" content="#4ECAC2" />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(psychologistSchema)} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

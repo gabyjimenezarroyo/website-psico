@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  background: #fafafa;
+  color: #1a1a1a;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top left, rgba(78, 202, 194, 0.12), transparent 34rem),
+    linear-gradient(180deg, #ffffff 0%, #fafafa 36rem);
+  font-family: "Inter", sans-serif;
+}
+
+::selection {
+  background: rgba(78, 202, 194, 0.32);
+}
+
+.container-premium {
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.eyebrow {
+  color: #2f6d6a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.section-pad {
+  padding-block: clamp(4.5rem, 8vw, 8rem);
+}
+
+.prose-premium :where(h2, h3) {
+  font-family: "Playfair Display", serif;
+  color: #1a1a1a;
+}
+
+.prose-premium :where(p, li) {
+  color: rgba(26, 26, 26, 0.76);
+  line-height: 1.8;
+}
+
+.prose-premium a {
+  color: #2f6d6a;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(78, 202, 194, 0.55);
+  text-underline-offset: 4px;
+}

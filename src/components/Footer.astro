@@ -1,0 +1,33 @@
+---
+import { navItems, site } from "@utils/site";
+
+const footerNavItems = navItems.flatMap((item) => ("children" in item ? item.children : [item])).slice(0, 6);
+---
+
+<footer class="border-t border-black/5 bg-white">
+  <div class="container-premium grid gap-10 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
+    <div>
+      <p class="font-display text-2xl font-bold text-ink">{site.professionalName}</p>
+      <p class="mt-3 max-w-sm text-sm leading-7 text-ink/68">
+        Acompanamiento psicologico para recuperar claridad, limites y libertad emocional.
+      </p>
+    </div>
+    <div>
+      <p class="text-sm font-bold text-secondary">Explorar</p>
+      <div class="mt-4 grid gap-2">
+        {footerNavItems.map((item) => <a class="text-sm text-ink/68 hover:text-secondary" href={item.href}>{item.label}</a>)}
+      </div>
+    </div>
+    <div>
+      <p class="text-sm font-bold text-secondary">Contacto</p>
+      <div class="mt-4 grid gap-2 text-sm text-ink/68">
+        <a class="hover:text-secondary" href={site.whatsapp}>WhatsApp</a>
+        <a class="hover:text-secondary" href={site.instagram}>Instagram</a>
+        <span>{site.address}</span>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-black/5 py-5 text-center text-xs text-ink/50">
+    © {new Date().getFullYear()} {site.professionalName}. Informacion educativa; no sustituye atencion de emergencia.
+  </div>
+</footer>

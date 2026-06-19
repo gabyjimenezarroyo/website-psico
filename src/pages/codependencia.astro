@@ -1,0 +1,34 @@
+---
+import CTASection from "@components/CTASection.astro";
+import InfoCards from "@components/InfoCards.astro";
+import PageHero from "@components/PageHero.astro";
+import SelfTest from "@components/react/SelfTest";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const items = [
+  { title: "Miedo a perder", text: "La posibilidad de que la otra persona se aleje pesa mas que tus propios limites." },
+  { title: "Culpa al elegirte", text: "Priorizarte se siente egoista, aunque estes emocionalmente agotada." },
+  { title: "Esperar que cambie", text: "Tu paz queda suspendida en la promesa de que la relacion sera distinta." },
+  { title: "Autoabandono", text: "Dejas de escuchar necesidades basicas para sostener el vinculo." },
+  { title: "Ansiedad vincular", text: "Mensajes, silencios o distancia activan miedo intenso y urgencia." },
+  { title: "Limites fragiles", text: "Sabes que algo te duele, pero te cuesta sostener el no." },
+];
+---
+
+<BaseLayout title="Dependencia emocional: senales y recuperacion" description="Landing sobre dependencia emocional, autoevaluacion, recuperacion y terapia para codependencia.">
+  <PageHero eyebrow="Dependencia emocional" title="Dependencia emocional: volver a elegirte sin culpa" description="La dependencia emocional no significa debilidad. Suele ser una respuesta aprendida al miedo, al abandono y a vinculos donde tus limites no fueron cuidados." secondaryLabel="Hacer self-test" secondaryHref="#self-test" />
+  <section class="section-pad bg-white"><div class="container-premium"><InfoCards items={items} /></div></section>
+  <section class="section-pad">
+    <div class="container-premium">
+      <div class="rounded-[2rem] bg-secondary p-8 text-white shadow-lift md:p-12">
+        <p class="text-sm font-bold uppercase tracking-[0.14em] text-accent">Recovery journey</p>
+        <h2 class="mt-4 max-w-3xl font-display text-5xl font-bold">Del apego ansioso a una relacion mas segura con vos</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-4">
+          {["Conciencia", "Regulacion", "Limites", "Autonomia"].map((item) => <span class="rounded-2xl bg-white/12 p-5 text-sm font-bold">{item}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="self-test" class="section-pad bg-white"><div class="container-premium"><SelfTest type="codependency" client:load /></div></section>
+  <CTASection title="Podes amar sin abandonarte." />
+</BaseLayout>

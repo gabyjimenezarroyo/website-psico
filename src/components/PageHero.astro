@@ -1,0 +1,47 @@
+---
+import Button from "@components/Button.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  primaryLabel = "Agendar consulta",
+  primaryHref = "/contact",
+  secondaryLabel,
+  secondaryHref = "/contact",
+} = Astro.props;
+---
+
+<section class="section-pad overflow-hidden">
+  <div class="container-premium grid items-center gap-12 lg:grid-cols-[1.03fr_0.97fr]">
+    <div>
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1 class="mt-5 max-w-4xl font-display text-5xl font-bold leading-[1.05] text-ink md:text-7xl">{title}</h1>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/70">{description}</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <Button href={primaryHref}>{primaryLabel}</Button>
+        {secondaryLabel && <Button href={secondaryHref} variant="secondary">{secondaryLabel}</Button>}
+      </div>
+    </div>
+    <div class="relative">
+      <div class="absolute -inset-4 rounded-[2rem] bg-primary/15 blur-3xl"></div>
+      <img
+        src="/images/gabriela-therapy-space.png"
+        alt="Espacio terapeutico calido y sereno"
+        class="relative aspect-[4/5] w-full rounded-[2rem] object-cover shadow-soft"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>

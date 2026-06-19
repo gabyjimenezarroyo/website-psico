@@ -1,0 +1,316 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  "¿Te cuesta decir \"no\" aunque algo te incomode o te perjudique?",
+  "¿Sueles priorizar las necesidades de otras personas por encima de las tuyas?",
+  "¿Te sentís responsable de solucionar los problemas emocionales de quienes amas?",
+  "¿Experimentás culpa cuando elegís cuidarte a vos misma antes que a otros?",
+  "¿Te resulta difícil poner límites y mantenerlos cuando alguien insiste?",
+  "¿Tu estado de ánimo depende mucho de cómo se sienten o actúan las personas cercanas a vos?",
+  "¿Permanecés en relaciones que te hacen daño porque temés perder a la otra persona?",
+  "¿Buscás constantemente aprobación, reconocimiento o validación externa?",
+  "¿Sentís ansiedad cuando alguien importante se aleja, se enoja o se muestra distante?",
+  "¿Con frecuencia sentís que das más de lo que recibís en tus relaciones?",
+];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "VERDE",
+    summary: "Límites saludables",
+    detail:
+      "Mostrás una buena capacidad para mantener tu identidad, tus necesidades y tus límites dentro de las relaciones.",
+    color: "#16803c",
+    accent: "#10b981",
+    classes: "border-emerald-200 bg-emerald-50 text-emerald-800",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "AMARILLO",
+    summary: "Tendencias codependientes",
+    detail:
+      "Existen algunas tendencias codependientes que podrían afectar tu bienestar emocional en determinadas situaciones.",
+    color: "#a16207",
+    accent: "#facc15",
+    classes: "border-yellow-200 bg-yellow-50 text-yellow-800",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "NARANJA",
+    summary: "Cuidado excesivo",
+    detail:
+      "La necesidad de cuidar, agradar o sostener a otras personas podría estar ocupando un espacio excesivo en tu vida emocional.",
+    color: "#c05621",
+    accent: "#fb923c",
+    classes: "border-orange-200 bg-orange-50 text-orange-800",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "ROJO",
+    summary: "Patrón importante",
+    detail:
+      "Tus respuestas reflejan un patrón importante de codependencia emocional. Recuperar límites saludables puede ayudarte a construir relaciones más equilibradas y satisfactorias.",
+    color: "#c53030",
+    accent: "#ef4444",
+    classes: "border-red-200 bg-red-50 text-red-800",
+  },
+];
+
+const disclaimer =
+  "Este cuestionario no constituye un diagnóstico psicológico. Su objetivo es ayudarte a reflexionar sobre patrones relacionales que podrían estar afectando tu bienestar emocional.";
+---
+
+<BaseLayout
+  title="Termómetro de codependencia"
+  description="Cuestionario interactivo de codependencia para reflexionar sobre límites, aprobación externa y bienestar emocional en las relaciones."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Termómetro de codependencia"
+    description="Una herramienta breve para observar qué tanto depende tu bienestar emocional de los demás y cómo eso puede afectar tus límites."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <section
+        id="codependency-questionnaire"
+        class="overflow-hidden rounded-soft border border-secondary/10 bg-white shadow-soft"
+        data-total={questions.length}
+      >
+        <div class="grid gap-0 lg:grid-cols-[1fr_19rem]">
+          <div class="p-5 md:p-8">
+            <p class="eyebrow">Termómetro de codependencia</p>
+            <h2 class="mt-3 font-display text-3xl font-bold text-ink md:text-5xl">
+              ¿Qué tanto depende tu bienestar emocional de los demás?
+            </h2>
+            <p class="mt-4 max-w-3xl leading-8 text-ink/70">
+              Responde Sí o No a cada afirmación. Al completar las 10 preguntas, el resultado se mostrará en un termómetro por colores.
+            </p>
+          </div>
+
+          <aside class="border-t border-black/10 bg-soft p-5 lg:border-l lg:border-t-0 md:p-6">
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-sm font-bold text-ink/70">Avance</span>
+              <span class="text-sm font-bold text-secondary"><span data-answered-count>0</span>/{questions.length}</span>
+            </div>
+            <div class="mt-4 h-3 overflow-hidden rounded-full bg-black/10">
+              <div class="h-full rounded-full bg-secondary transition-all" style="width: 0%" data-progress-bar></div>
+            </div>
+            <div class="mt-5 rounded-2xl border border-black/10 bg-white p-4">
+              <p class="text-sm font-semibold leading-6 text-ink/64" data-missing-text>
+                Faltan {questions.length} respuestas.
+              </p>
+            </div>
+          </aside>
+        </div>
+
+        <form class="grid gap-4 border-t border-black/5 bg-soft p-5 md:p-8" data-questionnaire-form>
+          {
+            questions.map((question, index) => (
+              <article class="rounded-2xl border border-black/10 bg-white p-4 shadow-[0_10px_30px_rgba(26,26,26,0.04)] md:p-5">
+                <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                  <p class="max-w-3xl text-sm font-semibold leading-7 text-ink/78 md:text-base">
+                    <span class="mr-2 font-bold text-secondary">{index + 1}.</span>
+                    {question}
+                  </p>
+                  <fieldset class="grid grid-cols-2 gap-2 md:w-44" aria-label={`Respuesta ${index + 1}`}>
+                    {
+                      [
+                        ["yes", "Sí"],
+                        ["no", "No"],
+                      ].map(([value, label]) => {
+                        const id = `codependency-${index}-${value}`;
+
+                        return (
+                          <label for={id} class="cursor-pointer">
+                            <input
+                              id={id}
+                              type="radio"
+                              name={`codependency-${index}`}
+                              value={value}
+                              class="peer sr-only"
+                              data-answer
+                            />
+                            <span class="grid min-h-11 place-items-center rounded-full border border-black/10 bg-soft px-4 text-sm font-bold text-ink/68 transition hover:border-primary hover:text-secondary peer-checked:border-secondary peer-checked:bg-secondary peer-checked:text-white peer-checked:shadow-lift">
+                              {label}
+                            </span>
+                          </label>
+                        );
+                      })
+                    }
+                  </fieldset>
+                </div>
+              </article>
+            ))
+          }
+        </form>
+
+        <div class="flex flex-wrap items-center gap-3 border-t border-black/5 bg-white p-5 md:p-8">
+          <button
+            type="button"
+            class="min-h-12 rounded-full bg-secondary px-6 text-sm font-bold text-white shadow-lift transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:bg-ink/25 disabled:shadow-none disabled:hover:translate-y-0"
+            data-show-result
+            disabled
+          >
+            Ver resultado
+          </button>
+          <button
+            type="button"
+            class="min-h-12 rounded-full border border-black/10 bg-white px-6 text-sm font-bold text-ink/68 transition hover:border-primary hover:text-secondary"
+            data-reset
+          >
+            Reiniciar
+          </button>
+        </div>
+
+        <div class="hidden border-t border-black/5 bg-white p-5 md:p-8" data-result-panel>
+          <div class="grid overflow-hidden rounded-soft border border-black/10 bg-white shadow-soft lg:grid-cols-[18rem_1fr]">
+            <div class="bg-ink p-6 text-white">
+              <p class="text-sm font-bold uppercase tracking-[0.12em] text-accent">Termómetro</p>
+              <div class="relative mt-7 h-72">
+                <div
+                  class="absolute left-1/2 top-0 h-full w-10 -translate-x-1/2 overflow-hidden rounded-full border-4 border-white/80 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)]"
+                  style="background: linear-gradient(180deg, #ef4444 0%, #fb923c 34%, #facc15 64%, #10b981 100%)"
+                >
+                  <div class="absolute inset-x-0 bottom-0 bg-white/30 transition-all" style="height: 8%" data-thermometer-fill></div>
+                </div>
+                <div
+                  class="absolute left-1/2 top-[92%] size-20 -translate-x-1/2 rounded-full border-4 border-white/80 shadow-soft transition-all"
+                  style="background: #10b981"
+                  data-thermometer-bulb
+                ></div>
+                <div class="absolute right-0 top-0 grid h-full content-between text-right text-xs font-bold text-white/70">
+                  <span>10</span>
+                  <span>8</span>
+                  <span>5</span>
+                  <span>2</span>
+                  <span>0</span>
+                </div>
+              </div>
+              <div class="mt-12 text-center">
+                <span class="font-display text-6xl font-bold" data-yes-count>0</span>
+                <p class="mt-1 text-sm font-semibold text-white/72">respuestas “Sí”</p>
+              </div>
+            </div>
+
+            <div class="p-6" data-result-content>
+              <div class="inline-flex rounded-full border px-4 py-2 text-sm font-bold" data-result-level></div>
+              <h3 class="mt-4 font-display text-3xl font-bold md:text-5xl" data-result-summary></h3>
+              <p class="mt-5 max-w-3xl leading-8 text-ink/72" data-result-detail></p>
+              <p class="mt-6 rounded-2xl border border-black/10 bg-white/75 p-5 text-sm font-semibold leading-7 text-ink/64">
+                {disclaimer}
+              </p>
+              <a
+                href="/contact"
+                class="mt-6 inline-flex min-h-11 items-center rounded-full bg-secondary px-5 text-sm font-bold text-white shadow-lift transition hover:-translate-y-0.5"
+              >
+                Agendar una consulta
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <CTASection title="Construir límites saludables también puede empezar con una conversación segura." />
+
+  <script is:inline define:vars={{ resultBands }}>
+    const root = document.querySelector("#codependency-questionnaire");
+    const bands = resultBands;
+
+    if (root) {
+      const total = Number(root.dataset.total);
+      const form = root.querySelector("[data-questionnaire-form]");
+      const answeredCount = root.querySelector("[data-answered-count]");
+      const progressBar = root.querySelector("[data-progress-bar]");
+      const missingText = root.querySelector("[data-missing-text]");
+      const showResultButton = root.querySelector("[data-show-result]");
+      const resetButton = root.querySelector("[data-reset]");
+      const resultPanel = root.querySelector("[data-result-panel]");
+      const yesCountNode = root.querySelector("[data-yes-count]");
+      const thermometerFill = root.querySelector("[data-thermometer-fill]");
+      const thermometerBulb = root.querySelector("[data-thermometer-bulb]");
+      const resultContent = root.querySelector("[data-result-content]");
+      const resultLevel = root.querySelector("[data-result-level]");
+      const resultSummary = root.querySelector("[data-result-summary]");
+      const resultDetail = root.querySelector("[data-result-detail]");
+
+      const getCheckedAnswers = () => Array.from(root.querySelectorAll("input[data-answer]:checked"));
+
+      const getScore = () => {
+        const checkedAnswers = getCheckedAnswers();
+        return {
+          answered: checkedAnswers.length,
+          yes: checkedAnswers.filter((answer) => answer.value === "yes").length,
+        };
+      };
+
+      const findBand = (score) => bands.find((band) => score >= band.min && score <= band.max) ?? bands[0];
+
+      const updateProgress = () => {
+        const score = getScore();
+        const missing = total - score.answered;
+
+        if (answeredCount) answeredCount.textContent = String(score.answered);
+        if (progressBar) progressBar.style.width = `${(score.answered / total) * 100}%`;
+        if (showResultButton) showResultButton.disabled = score.answered < total;
+        if (missingText) {
+          missingText.textContent =
+            missing === 0 ? "Ya puedes ver tu resultado." : `Faltan ${missing} respuesta${missing === 1 ? "" : "s"}.`;
+        }
+        if (resultPanel) resultPanel.classList.add("hidden");
+      };
+
+      const showResult = () => {
+        const score = getScore();
+
+        if (score.answered < total) return;
+
+        const band = findBand(score.yes);
+        const thermometerHeight = Math.max(10, score.yes * 10);
+
+        if (yesCountNode) yesCountNode.textContent = String(score.yes);
+        if (thermometerFill) {
+          thermometerFill.style.height = `${thermometerHeight}%`;
+          thermometerFill.style.background = band.accent;
+        }
+        if (thermometerBulb) thermometerBulb.style.background = band.accent;
+        if (resultContent) resultContent.className = `p-6 ${band.classes}`;
+        if (resultLevel) {
+          resultLevel.className = `inline-flex rounded-full border px-4 py-2 text-sm font-bold ${band.classes}`;
+          resultLevel.textContent = band.level;
+        }
+        if (resultSummary) {
+          resultSummary.textContent = band.summary;
+          resultSummary.style.color = band.color;
+        }
+        if (resultDetail) resultDetail.textContent = band.detail;
+        if (resultPanel) {
+          resultPanel.classList.remove("hidden");
+          resultPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      };
+
+      form?.addEventListener("change", updateProgress);
+      showResultButton?.addEventListener("click", showResult);
+      resetButton?.addEventListener("click", () => {
+        form?.reset();
+        updateProgress();
+      });
+
+      updateProgress();
+    }
+  </script>
+</BaseLayout>

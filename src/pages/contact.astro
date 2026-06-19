@@ -1,0 +1,41 @@
+---
+import PageHero from "@components/PageHero.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { site } from "@utils/site";
+---
+
+<BaseLayout title="Contacto" description="Agenda una consulta con Gabriela Jimenez por WhatsApp, Instagram o formulario de contacto.">
+  <PageHero eyebrow="Contacto" title="Agendá un espacio para empezar" description="Podemos coordinar una primera consulta para entender tu situacion, responder dudas y definir el proceso mas adecuado para vos." primaryLabel="WhatsApp" primaryHref={site.whatsapp} secondaryLabel="Instagram" secondaryHref={site.instagram} />
+  <section class="section-pad bg-white">
+    <div class="container-premium grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+      <form class="rounded-[2rem] bg-soft p-7 shadow-soft" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
+        <div class="grid gap-5">
+          <label class="grid gap-2 text-sm font-bold text-ink/72">Nombre<input class="min-h-12 rounded-2xl border border-black/10 px-4 outline-none focus:border-primary" name="name" required /></label>
+          <label class="grid gap-2 text-sm font-bold text-ink/72">Email<input class="min-h-12 rounded-2xl border border-black/10 px-4 outline-none focus:border-primary" name="email" type="email" required /></label>
+          <label class="grid gap-2 text-sm font-bold text-ink/72">Mensaje<textarea class="min-h-36 rounded-2xl border border-black/10 p-4 outline-none focus:border-primary" name="message" required></textarea></label>
+          <button class="min-h-12 rounded-full bg-secondary px-6 text-sm font-bold text-white shadow-lift" type="submit">Enviar mensaje</button>
+        </div>
+      </form>
+      <aside class="grid gap-5">
+        <div class="rounded-soft bg-soft p-7 shadow-soft">
+          <h2 class="font-display text-3xl font-bold text-ink">Horario</h2>
+          <p class="mt-4 leading-7 text-ink/68">Lunes a viernes, 9:00 a 18:00. Sabados con cita previa.</p>
+        </div>
+        <div class="overflow-hidden rounded-soft bg-soft shadow-soft">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.814668830493!2d-84.06381999858034!3d9.949372792676236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e487d3651e0d%3A0x33f940211943f356!2sClinica%20Santa%20Ana!5e0!3m2!1sen!2scr!4v1781667937561!5m2!1sen!2scr"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de Clínica Santa Ana"
+            class="min-h-80 w-full"
+          ></iframe>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

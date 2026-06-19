@@ -1,0 +1,22 @@
+---
+import CTASection from "@components/CTASection.astro";
+import InfoCards from "@components/InfoCards.astro";
+import PageHero from "@components/PageHero.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const services = [
+  { title: "Individual Therapy", text: "Proceso destacado para trabajar abuso emocional, limites, ansiedad vincular, autoestima y recuperacion personal." },
+  { title: "Couples Therapy", text: "Espacio para revisar patrones relacionales, comunicacion, acuerdos y conflictos persistentes." },
+  { title: "Family Therapy", text: "Acompanamiento para dinamicas familiares que necesitan limites, escucha y formas mas sanas de vincularse." },
+];
+---
+
+<BaseLayout title="Servicios de terapia" description="Terapia individual, de pareja y familiar con Gabriela Jimenez.">
+  <PageHero eyebrow="Servicios" title="Procesos terapeuticos para recuperar claridad y estabilidad" description="Cada proceso se adapta a tu historia, tus recursos y el momento emocional que estas atravesando." />
+  <section class="section-pad bg-white">
+    <div class="container-premium">
+      <InfoCards items={services} />
+    </div>
+  </section>
+  <CTASection />
+</BaseLayout>

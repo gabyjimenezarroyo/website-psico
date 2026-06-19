@@ -1,0 +1,18 @@
+---
+import CTASection from "@components/CTASection.astro";
+import InfoCards from "@components/InfoCards.astro";
+import PageHero from "@components/PageHero.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const items = [
+  { title: "Comprender el ciclo", text: "Identificar detonantes, emociones y conductas que sostienen el consumo o la dependencia." },
+  { title: "Regular emociones", text: "Desarrollar recursos para atravesar ansiedad, culpa, vacio o impulsividad sin perderte." },
+  { title: "Reconstruir vinculos", text: "Trabajar limites, reparacion y comunicacion desde un lugar mas consciente." },
+];
+---
+
+<BaseLayout title="Terapia para adicciones" description="Acompanamiento psicologico para comprender ciclos de adiccion, ansiedad y regulacion emocional.">
+  <PageHero eyebrow="Adicciones" title="Acompanamiento para salir de ciclos que te desgastan" description="La adiccion no se trabaja desde la verguenza. Se trabaja entendiendo la funcion emocional del ciclo y construyendo recursos sostenibles." />
+  <section class="section-pad bg-white"><div class="container-premium"><InfoCards items={items} /></div></section>
+  <CTASection />
+</BaseLayout>

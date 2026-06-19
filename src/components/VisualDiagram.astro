@@ -1,0 +1,31 @@
+---
+const concepts = [
+  ["Abuso emocional", "Desgaste progresivo de la confianza, autonomia y seguridad interna."],
+  ["Gaslighting", "Mensajes que te hacen dudar de tu memoria, percepcion o juicio."],
+  ["Trauma bonding", "Ciclos de dano y alivio que vuelven dificil soltar el vinculo."],
+  ["Manipulacion", "Culpa, silencio, amenaza o afecto condicionado para controlar."],
+  ["Codependencia", "Priorizar la relacion a costa de tus necesidades y limites."],
+];
+---
+
+<div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+  <div class="rounded-[2rem] bg-secondary p-8 text-white shadow-lift">
+    <p class="text-sm font-bold uppercase tracking-[0.14em] text-accent">Mapa emocional</p>
+    <div class="mt-8 grid gap-4">
+      {concepts.map(([title], index) => (
+        <div class="flex items-center gap-4">
+          <span class="grid size-10 place-items-center rounded-full bg-white/14 text-sm font-bold">{index + 1}</span>
+          <span class="font-display text-2xl font-bold">{title}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="grid gap-4">
+    {concepts.map(([title, text]) => (
+      <article class="rounded-soft border border-secondary/10 bg-white p-5 shadow-soft">
+        <h3 class="font-display text-2xl font-bold text-ink">{title}</h3>
+        <p class="mt-2 leading-7 text-ink/68">{text}</p>
+      </article>
+    ))}
+  </div>
+</div>

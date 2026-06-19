@@ -1,0 +1,26 @@
+---
+import Button from "@components/Button.astro";
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+
+const {
+  title = "No tenes que recuperar tu libertad emocional sola.",
+  text = "Un espacio terapeutico puede ayudarte a entender lo que viviste, ordenar tus emociones y construir limites sostenibles.",
+} = Astro.props;
+---
+
+<section class="section-pad">
+  <div class="container-premium rounded-[2rem] bg-secondary p-8 text-white shadow-lift md:p-12">
+    <div class="grid items-center gap-8 md:grid-cols-[1fr_auto]">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[0.14em] text-accent">Siguiente paso</p>
+        <h2 class="mt-4 max-w-3xl font-display text-4xl font-bold leading-tight md:text-5xl">{title}</h2>
+        <p class="mt-5 max-w-2xl leading-8 text-white/78">{text}</p>
+      </div>
+      <Button href="/contact" variant="secondary" class="bg-white">Agendar consulta</Button>
+    </div>
+  </div>
+</section>

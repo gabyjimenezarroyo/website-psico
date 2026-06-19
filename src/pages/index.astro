@@ -1,0 +1,101 @@
+---
+import Button from "@components/Button.astro";
+import CTASection from "@components/CTASection.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import VisualDiagram from "@components/VisualDiagram.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const signs = [
+  "Siempre terminas pidiendo perdon.",
+  "Sentis culpa constantemente.",
+  "Esperas que la otra persona cambie.",
+  "Dudas de tu propia percepcion.",
+  "Vivis con ansiedad.",
+  "Tenes miedo de estar sola.",
+];
+const before = ["Confusion", "Fear", "Anxiety", "Guilt", "Emotional exhaustion"];
+const after = ["Boundaries", "Confidence", "Self-worth", "Emotional regulation", "Freedom"];
+---
+
+<BaseLayout
+  title="Recupera tu libertad emocional"
+  description="Terapia para mujeres que se sienten atrapadas en relaciones de abuso emocional, manipulacion, codependencia o ansiedad vincular."
+>
+  <section class="section-pad overflow-hidden">
+    <div class="container-premium grid items-center gap-12 lg:grid-cols-[1.03fr_0.97fr]">
+      <div>
+        <p class="eyebrow">Terapia psicologica para mujeres</p>
+        <h1 class="mt-5 font-display text-6xl font-bold leading-[1.02] text-ink md:text-8xl">Recuperá tu libertad emocional</h1>
+        <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/70">
+          If you feel trapped inside a relationship that constantly makes you question yourself, therapy can help you regain clarity, confidence and peace.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <Button href="/contact">Agendar Consulta</Button>
+          <Button href="/emotional-abuse#self-test" variant="secondary">¿Estoy viviendo abuso emocional?</Button>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute -inset-6 rounded-[2rem] bg-accent/30 blur-3xl"></div>
+        <img src="/images/gabriela-therapy-space.png" alt="Consultorio psicologico calido" class="relative aspect-[4/5] w-full rounded-[2rem] object-cover shadow-soft" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-white">
+    <div class="container-premium">
+      <SectionHeading eyebrow="Identificacion" title="¿Te identificás con esto?" description="Estas senales no aparecen de un dia para otro. Muchas mujeres aprenden a normalizarlas hasta que el cuerpo empieza a pedir ayuda." align="center" />
+      <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {signs.map((sign) => (
+          <article class="group rounded-soft border border-secondary/10 bg-soft p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-white">
+            <span class="grid size-10 place-items-center rounded-full bg-primary/15 text-secondary transition group-hover:bg-primary group-hover:text-white">✓</span>
+            <p class="mt-5 text-lg font-bold text-ink">{sign}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container-premium">
+      <SectionHeading eyebrow="Psicoeducacion" title="Entender el ciclo te devuelve claridad" description="Poner nombre a lo que pasa reduce la culpa y abre espacio para decidir con mas calma." />
+      <div class="mt-12">
+        <VisualDiagram />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-white">
+    <div class="container-premium">
+      <SectionHeading eyebrow="Transformacion" title="Un proceso para volver a vos" description="La terapia no borra tu historia; te ayuda a mirarla sin miedo y a construir una vida con limites, calma y dignidad." align="center" />
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        <div class="rounded-[2rem] border border-black/5 bg-soft p-7 shadow-soft">
+          <p class="font-display text-3xl font-bold text-ink">Before Therapy</p>
+          <div class="mt-6 grid gap-3">{before.map((item) => <span class="rounded-full bg-white px-5 py-3 text-sm font-bold text-ink/64">{item}</span>)}</div>
+        </div>
+        <div class="rounded-[2rem] bg-secondary p-7 text-white shadow-lift">
+          <p class="font-display text-3xl font-bold">After Therapy</p>
+          <div class="mt-6 grid gap-3">{after.map((item) => <span class="rounded-full bg-white/12 px-5 py-3 text-sm font-bold text-white">{item}</span>)}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad overflow-hidden">
+    <div class="container-premium grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <img src="/images/gabriela-therapy-space.png" alt="Gabriela Jimenez psicologa" class="aspect-[4/5] w-full rounded-[2rem] object-cover shadow-soft" loading="lazy" />
+      <div class="min-w-0">
+        <p class="eyebrow">Sobre Gabriela</p>
+        <h2 class="mt-4 font-display text-5xl font-bold text-ink">Acompanamiento calido, cercano y basado en evidencia</h2>
+        <p class="mt-5 leading-8 text-ink/70">Gabriela Jimenez trabaja desde un enfoque cognitivo conductual y humano, con especial interes en abuso emocional, codependencia y recuperacion de relaciones toxicas.</p>
+        <div class="mt-7 grid gap-3 text-sm font-bold text-secondary sm:grid-cols-2">
+          <span>Terapia Cognitivo Conductual</span>
+          <span>Sesiones online y presenciales</span>
+          <span>Apoyo cercano y humano</span>
+          <span>Especialista en codependencia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

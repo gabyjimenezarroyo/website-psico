@@ -1,0 +1,20 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Sobre Gabriela" description="Conoce el enfoque terapeutico de Gabriela Jimenez: calido, humano y orientado a recuperar claridad emocional.">
+  <PageHero eyebrow="Sobre Gabriela" title="Terapia con presencia, criterio y calidez" description="Gabriela Jimenez acompana procesos de recuperacion emocional desde un enfoque cognitivo conductual, humano y cercano, especialmente en mujeres que han vivido manipulacion, abuso emocional o codependencia." />
+  <section class="section-pad bg-white">
+    <div class="container-premium grid gap-8 md:grid-cols-3">
+      {["Cognitive Behavioral Therapist", "Human-centered approach", "Online and in-person sessions"].map((item) => (
+        <article class="rounded-soft bg-soft p-7 shadow-soft">
+          <h2 class="font-display text-3xl font-bold text-ink">{item}</h2>
+          <p class="mt-4 leading-7 text-ink/68">Un espacio seguro para ordenar lo vivido, fortalecer recursos internos y construir decisiones mas libres.</p>
+        </article>
+      ))}
+    </div>
+  </section>
+  <CTASection />
+</BaseLayout>
