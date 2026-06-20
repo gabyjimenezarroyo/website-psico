@@ -1,7 +1,7 @@
 {
   "name": "sitio_gaby",
   "version": "1.0.0",
-  "description": "Premium psychology website for Gabriela Jimenez.",
+  "description": "Premium psychology website for Gaby Jimenez.",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,7 +15,7 @@
     "psychology",
     "therapy"
   ],
-  "author": "Gabriela Jimenez",
+  "author": "Gaby Jimenez",
   "license": "UNLICENSED",
   "dependencies": {
     "@astrojs/mdx": "^6.0.3",

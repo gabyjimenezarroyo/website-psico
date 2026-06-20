@@ -16,7 +16,7 @@ const blog = defineCollection({
       "Personal Growth",
     ]),
     tags: z.array(z.string()).default([]),
-    author: z.string().default("Gabriela Jimenez"),
+    author: z.string().default("Gaby Jimenez"),
     featured: z.boolean().default(false),
   }),
 });

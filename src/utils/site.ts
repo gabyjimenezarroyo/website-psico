@@ -1,6 +1,6 @@
 export const site = {
-  name: "Gabriela Jimenez Psicologia",
-  professionalName: "Gabriela Jimenez",
+  name: "Gaby Jimenez Psicologia",
+  professionalName: "Gaby Jimenez",
   title: "Psicóloga",
   url: "https://gabrielajimenezpsicologia.com",
   description:
