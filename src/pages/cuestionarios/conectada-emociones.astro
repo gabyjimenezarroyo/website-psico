@@ -1,0 +1,104 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import QuestionnaireThermometer from "@components/QuestionnaireThermometer.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  "¿Te cuesta identificar exactamente qué emoción estás sintiendo cuando algo te afecta?",
+  "¿Sueles darte cuenta de que estabas molesta, triste o preocupada varias horas o días después de que ocurrió algo?",
+  "¿Con frecuencia ignoras lo que sentís para enfocarte en lo que tenés que hacer?",
+  "¿Te resulta difícil expresar emocionalmente lo que necesitás de otras personas?",
+  "¿Sentís emociones intensas sin comprender claramente qué las provocó?",
+  "¿Te cuesta diferenciar entre emociones parecidas, como tristeza, decepción, enojo o frustración?",
+  "¿Solés minimizar tus emociones pensando que no son tan importantes?",
+  "¿Te resulta más fácil entender cómo se sienten los demás que comprender lo que te pasa a vos?",
+  "¿Esperás hasta sentirte sobrepasada para prestar atención a tu bienestar emocional?",
+  "¿Sentís que has perdido conexión con tus propias necesidades emocionales?",
+];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "Alta claridad emocional",
+    summary: "Alta claridad emocional",
+    thermometerLabel: "Conectada con tus emociones",
+    detail:
+      "Mostrás una buena capacidad para reconocer, comprender y expresar tus emociones. Esto suele favorecer relaciones más saludables y decisiones más alineadas con tus necesidades.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "Atención",
+    summary: "Atención",
+    thermometerLabel: "Mayor atención emocional",
+    detail:
+      "Existen algunas dificultades para identificar o expresar emociones importantes. Desarrollar mayor conciencia emocional puede ayudarte a comprenderte mejor.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "Claridad emocional disminuida",
+    summary: "Claridad emocional disminuida",
+    thermometerLabel: "Desconexión emocional frecuente",
+    detail:
+      "Es posible que estés desconectándote frecuentemente de tus emociones o necesidades. Esto puede generar confusión, agotamiento o dificultades en tus relaciones.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "Desconexión emocional significativa",
+    summary: "Desconexión emocional significativa",
+    thermometerLabel: "Necesitás reconectar con vos misma",
+    detail:
+      "Tus respuestas sugieren una dificultad importante para reconocer y atender tu mundo emocional. Recuperar esa conexión puede convertirse en un paso fundamental para tu bienestar.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su objetivo es ayudarte a identificar aspectos de tu vida emocional que merecen atención y reflexión.";
+---
+
+<BaseLayout
+  title="¿Qué tan conectada estás con tus emociones?"
+  description="Cuestionario interactivo para explorar tu claridad emocional y recibir una interpretación orientativa por colores."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="¿Qué tan conectada estás con tus emociones?"
+    description="Una herramienta breve para reconocer cómo estás identificando, comprendiendo y expresando tus emociones."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <QuestionnaireThermometer
+        id="conectada-emociones-questionnaire"
+        eyebrow="Termómetro emocional"
+        title="Cuestionario: ¿Qué tan conectada estás con tus emociones?"
+        intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
+        questions={questions}
+        resultBands={resultBands}
+        disclaimer={disclaimer}
+      />
+    </div>
+  </section>
+
+  <CTASection title="Reconectar con tus emociones también puede empezar con una conversación segura." />
+</BaseLayout>

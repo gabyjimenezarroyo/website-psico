@@ -1,0 +1,101 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import QuestionnaireThermometer from "@components/QuestionnaireThermometer.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  "¿Te resulta difícil detener esta conducta una vez que la has comenzado?",
+  "¿Has intentado reducirla o controlarla sin lograr mantener el cambio en el tiempo?",
+  "¿Dedicas más tiempo, energía o dinero a esta conducta de lo que inicialmente planeabas?",
+  "¿Has ocultado o minimizado esta conducta frente a otras personas?",
+  "¿Sientes ansiedad, irritabilidad o incomodidad cuando no puedes realizarla?",
+  "¿Esta conducta ha comenzado a afectar alguna área importante de tu vida?",
+  "¿Te encuentras justificando con frecuencia por qué continúas haciéndolo?",
+  "¿Has dejado de lado actividades importantes debido a esta conducta?",
+  "¿Piensas frecuentemente en cuándo podrás volver a realizarla?",
+  "¿Sientes que la conducta tiene más control sobre vos del que te gustaría admitir?",
+];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "Riesgo bajo",
+    summary: "Riesgo bajo",
+    thermometerLabel: "Sin indicadores importantes de pérdida de control",
+    detail: "No aparecen indicadores importantes de pérdida de control.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "Atención",
+    summary: "Atención",
+    thermometerLabel: "Señales que merecen observación",
+    detail: "Existen señales que merecen observación y reflexión.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "Riesgo elevado",
+    summary: "Riesgo elevado",
+    thermometerLabel: "La conducta ocupa demasiado espacio",
+    detail: "La conducta podría estar ocupando un espacio excesivo en tu vida.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "Riesgo alto",
+    summary: "Riesgo alto",
+    thermometerLabel: "Merece atención profesional",
+    detail:
+      "Tus respuestas sugieren una relación problemática con esta conducta que merece atención profesional.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su objetivo es ayudarte a identificar señales que merecen atención y reflexión.";
+---
+
+<BaseLayout
+  title="Cuestionario de adicciones"
+  description="Cuestionario interactivo para observar si una conducta se está volviendo problemática y recibir una interpretación orientativa por colores."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Cuestionario: ¿Mi relación con esta conducta se está volviendo problemática?"
+    description="Una herramienta breve para observar señales de pérdida de control, aumento de tiempo, ocultamiento o impacto en áreas importantes de tu vida."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <QuestionnaireThermometer
+        id="adicciones-questionnaire"
+        eyebrow="Termómetro emocional"
+        title="Cuestionario: ¿Mi relación con esta conducta se está volviendo problemática?"
+        intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
+        questions={questions}
+        resultBands={resultBands}
+        disclaimer={disclaimer}
+      />
+    </div>
+  </section>
+
+  <CTASection title="Reconocer una señal a tiempo también puede ser una forma de cuidarte." />
+</BaseLayout>

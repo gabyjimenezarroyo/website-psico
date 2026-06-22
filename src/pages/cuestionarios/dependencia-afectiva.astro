@@ -1,0 +1,103 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import QuestionnaireThermometer from "@components/QuestionnaireThermometer.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  "¿La idea de terminar una relación te genera una angustia difícil de imaginar o tolerar?",
+  "¿Sientes que una relación sentimental es indispensable para sentirte completa o plena?",
+  "¿Has permanecido en relaciones insatisfactorias por miedo a quedarte sola?",
+  "¿Tu estado de ánimo mejora o empeora significativamente según la atención que recibes de una persona importante para ti?",
+  "¿Te cuesta disfrutar plenamente de tu vida cuando no estás involucrada emocionalmente con alguien?",
+  "¿Sueles idealizar a las personas que te atraen, especialmente al inicio de una relación?",
+  "¿Cuando una relación atraviesa dificultades sientes una necesidad urgente de recuperarla cuanto antes?",
+  "¿Te resulta difícil imaginar un futuro feliz sin una pareja?",
+  "¿Has tolerado situaciones que te hacían daño por temor a perder el vínculo?",
+  "¿Sientes que gran parte de tu seguridad emocional depende de sentirte querida o elegida por alguien?",
+];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "Dependencia afectiva baja",
+    summary: "Dependencia afectiva baja",
+    thermometerLabel: "Autonomía emocional saludable",
+    detail:
+      "Tu bienestar emocional parece apoyarse en múltiples áreas de tu vida y no exclusivamente en las relaciones sentimentales.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "Atención",
+    summary: "Atención",
+    thermometerLabel: "Necesidad afectiva elevada",
+    detail: "Existen algunas señales de dependencia emocional que merecen observación y reflexión.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "Dependencia afectiva significativa",
+    summary: "Dependencia afectiva significativa",
+    thermometerLabel: "Dependencia emocional importante",
+    detail:
+      "Las relaciones parecen ocupar un lugar central en tu sensación de bienestar y seguridad emocional.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "Dependencia afectiva elevada",
+    summary: "Dependencia afectiva elevada",
+    thermometerLabel: "Necesitas fortalecer tu autonomía emocional",
+    detail:
+      "Tus respuestas sugieren una fuerte necesidad emocional de mantener vínculos afectivos, incluso cuando estos pueden generar sufrimiento o desequilibrio.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su objetivo es ayudarte a identificar patrones emocionales que merecen atención y reflexión.";
+---
+
+<BaseLayout
+  title="Cuestionario de dependencia afectiva"
+  description="Cuestionario interactivo para identificar señales de dependencia afectiva y recibir una interpretación orientativa por colores."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Cuestionario: ¿Podrías estar experimentando dependencia afectiva?"
+    description="Una herramienta breve para observar cuánto influye el vínculo afectivo en tu seguridad emocional, bienestar y sentido de autonomía."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <QuestionnaireThermometer
+        id="dependencia-afectiva-questionnaire"
+        eyebrow="Termómetro emocional"
+        title="Cuestionario: ¿Podrías estar experimentando dependencia afectiva?"
+        intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
+        questions={questions}
+        resultBands={resultBands}
+        disclaimer={disclaimer}
+      />
+    </div>
+  </section>
+
+  <CTASection title="Fortalecer tu autonomía emocional también puede empezar con una conversación segura." />
+</BaseLayout>

@@ -1,0 +1,115 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import QuestionnaireThermometer from "@components/QuestionnaireThermometer.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  "¿Piensas diariamente en el consumo, comportamiento o recaídas de esta persona?",
+  "¿Tu estado de ánimo cambia significativamente dependiendo de cómo se encuentra esa persona?",
+  "¿Has dejado de hacer actividades importantes para ocuparte de los problemas relacionados con su adicción?",
+  "¿Sientes que una parte importante de tu energía emocional está dedicada a preocuparte por ella?",
+  "¿Te cuesta relajarte porque siempre estás pendiente de lo que podría ocurrir?",
+  "¿Las decisiones de esta persona afectan constantemente tu tranquilidad emocional?",
+  "¿Has descuidado tu bienestar físico o emocional debido al estrés asociado a esta situación?",
+  "¿Sientes que pocas personas comprenden realmente lo que estás viviendo?",
+  "¿La situación ha afectado otras relaciones importantes de tu vida?",
+  "¿Sientes que la adicción de esta persona ocupa demasiado espacio en tu vida actualmente?",
+];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "Impacto bajo",
+    summary: "Impacto bajo",
+    thermometerLabel: "Apoyo saludable",
+    detail:
+      "La situación genera preocupación, pero parece existir un equilibrio saludable entre el apoyo que brindas y tu propio bienestar.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "Atención",
+    summary: "Atención",
+    thermometerLabel: "Impacto creciente",
+    detail: "La situación está comenzando a afectar áreas importantes de tu bienestar emocional.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "Impacto significativo",
+    summary: "Impacto significativo",
+    thermometerLabel: "Desgaste importante",
+    detail:
+      "La adicción de esta persona está ocupando una cantidad considerable de espacio emocional en tu vida.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "Impacto elevado",
+    summary: "Impacto elevado",
+    thermometerLabel: "Necesitas apoyo para vos también",
+    detail:
+      "Tus respuestas sugieren que el problema de otra persona podría estar afectando seriamente tu bienestar emocional y calidad de vida.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su objetivo es ayudarte a identificar cómo esta situación podría estar afectando tu bienestar emocional.";
+---
+
+<BaseLayout
+  title="Cuestionario sobre la adicción de otra persona"
+  description="Cuestionario interactivo para identificar cómo la adicción de otra persona podría estar afectando tu bienestar emocional."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Cuestionario: ¿La adicción de otra persona está afectando tu bienestar?"
+    description="Una herramienta breve para observar cuánto espacio emocional ocupa la adicción de alguien cercano en tu vida."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <QuestionnaireThermometer
+        id="adiccion-de-otros-questionnaire"
+        eyebrow="Termómetro emocional"
+        title="Cuestionario: ¿La adicción de otra persona está afectando tu bienestar?"
+        intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
+        questions={questions}
+        resultBands={resultBands}
+        disclaimer={disclaimer}
+      />
+
+      <div class="mt-8 rounded-soft border border-secondary/10 bg-soft p-6 shadow-soft md:p-8">
+        <p class="font-display text-2xl font-bold text-ink md:text-3xl">
+          ¿Te gustaría recibir una guía gratuita para aprender a apoyar a alguien con una adicción sin descuidarte a vos misma?
+        </p>
+        <a
+          href="/contact"
+          class="mt-5 inline-flex min-h-11 items-center rounded-full bg-secondary px-5 text-sm font-bold text-white shadow-lift transition hover:-translate-y-0.5"
+        >
+          Solicitar guía
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="También necesitás apoyo cuando estás sosteniendo el dolor de alguien más." />
+</BaseLayout>

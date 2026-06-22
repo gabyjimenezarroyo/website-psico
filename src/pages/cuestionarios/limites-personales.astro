@@ -1,0 +1,103 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import QuestionnaireThermometer from "@components/QuestionnaireThermometer.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  "¿Aceptas compromisos que realmente no deseas asumir para evitar decepcionar a otras personas?",
+  "¿Te resulta incómodo rechazar peticiones incluso cuando no tienes tiempo o energía para cumplirlas?",
+  "¿Sueles sentirte responsable del bienestar emocional de las personas cercanas a ti?",
+  "¿Te cuesta pedir espacio cuando necesitas tiempo para ti misma?",
+  "¿Con frecuencia colocas las necesidades de otras personas antes que las tuyas?",
+  "¿Has permitido situaciones que te incomodaban porque no sabías cómo expresar tus límites?",
+  "¿Te preocupa que otras personas te consideren egoísta cuando te priorizas?",
+  "¿Te cuesta mantener una decisión cuando alguien insiste repetidamente?",
+  "¿Terminas agotada por asumir más responsabilidades de las que realmente puedes manejar?",
+  "¿Sientes que otras personas tienen más acceso a tu tiempo, energía o atención del que te gustaría?",
+];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "Límites saludables",
+    summary: "Límites saludables",
+    thermometerLabel: "Límites saludables",
+    detail:
+      "Mostrás una buena capacidad para proteger tus necesidades, administrar tu energía y comunicar tus límites de forma adecuada.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "Atención",
+    summary: "Atención",
+    thermometerLabel: "Necesitan fortalecerse",
+    detail: "Existen algunas dificultades para establecer o mantener límites en determinadas situaciones.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "Límites debilitados",
+    summary: "Límites debilitados",
+    thermometerLabel: "Límites debilitados",
+    detail:
+      "Es posible que estés cediendo demasiado espacio emocional, tiempo o energía a otras personas, afectando tu bienestar.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "Límites significativamente comprometidos",
+    summary: "Límites significativamente comprometidos",
+    thermometerLabel: "Necesitas recuperar tu espacio",
+    detail:
+      "Tus respuestas sugieren dificultades importantes para proteger tus necesidades personales y emocionales.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su objetivo es ayudarte a identificar patrones que merecen atención y reflexión.";
+---
+
+<BaseLayout
+  title="Cuestionario de límites personales"
+  description="Cuestionario interactivo para identificar qué tan saludables son tus límites personales y emocionales."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Cuestionario: ¿Qué tan saludables son tus límites personales?"
+    description="Una herramienta breve para observar cómo protegés tu tiempo, energía, necesidades y espacio emocional."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <QuestionnaireThermometer
+        id="limites-personales-questionnaire"
+        eyebrow="Termómetro emocional"
+        title="Cuestionario: ¿Qué tan saludables son tus límites personales?"
+        intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
+        questions={questions}
+        resultBands={resultBands}
+        disclaimer={disclaimer}
+      />
+    </div>
+  </section>
+
+  <CTASection title="Recuperar tu espacio también puede empezar con una conversación segura." />
+</BaseLayout>

@@ -1,0 +1,360 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  {
+    text: "Cuando una persona importante tarda en responder o parece distante, suelo preocuparme rápidamente por la relación.",
+    category: "Apego Ansioso",
+  },
+  {
+    text: "Me siento cómoda confiando en otras personas y permitiendo que me conozcan profundamente.",
+    category: "Apego Seguro",
+  },
+  {
+    text: "Cuando una relación se vuelve muy cercana emocionalmente, suelo sentir necesidad de tomar distancia.",
+    category: "Apego Evitativo",
+  },
+  {
+    text: "A veces deseo mucha cercanía emocional, pero cuando la obtengo me siento incómoda o confundida.",
+    category: "Apego Desorganizado",
+  },
+  {
+    text: "Necesito señales frecuentes de cariño o interés para sentirme segura dentro de una relación.",
+    category: "Apego Ansioso",
+  },
+  {
+    text: "Puedo mantener mi independencia sin sentir que eso amenaza mis relaciones importantes.",
+    category: "Apego Seguro",
+  },
+  {
+    text: "Me cuesta pedir ayuda o apoyo emocional, incluso cuando lo necesito.",
+    category: "Apego Evitativo",
+  },
+  {
+    text: "Las relaciones suelen generar emociones intensas y contradictorias dentro de mí.",
+    category: "Apego Desorganizado",
+  },
+  {
+    text: "El miedo al rechazo o al abandono influye significativamente en mi forma de relacionarme.",
+    category: "Apego Ansioso",
+  },
+  {
+    text: "Generalmente me siento segura tanto de mí misma como de las personas importantes en mi vida.",
+    category: "Apego Seguro",
+  },
+];
+
+const categories = [
+  {
+    name: "Apego Seguro",
+    questions: "2, 6 y 10",
+    detail:
+      "Tendés a sentirte segura tanto en la cercanía emocional como en tu independencia. Podés confiar, pedir apoyo y mantener vínculos sin sentir que tu autonomía está amenazada.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    name: "Apego Ansioso",
+    questions: "1, 5 y 9",
+    detail:
+      "Podés experimentar preocupación intensa ante la distancia, necesidad frecuente de confirmación o miedo al rechazo dentro de tus vínculos.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    name: "Apego Evitativo",
+    questions: "3 y 7",
+    detail:
+      "Podés tender a protegerte tomando distancia emocional, evitando pedir apoyo o sintiendo incomodidad cuando una relación se vuelve muy cercana.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    name: "Apego Desorganizado",
+    questions: "4 y 8",
+    detail:
+      "Podés vivir deseos de cercanía junto con incomodidad, confusión o emociones contradictorias dentro de relaciones importantes.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su objetivo es ayudarte a comprender mejor tus patrones relacionales y reflexionar sobre cómo influyen en tus vínculos.";
+---
+
+<BaseLayout
+  title="Cuestionario de estilo de apego"
+  description="Cuestionario interactivo para explorar tendencias generales de estilo de apego en tus relaciones."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Cuestionario: ¿Cuál podría ser tu estilo de apego?"
+    description="Una herramienta breve para observar patrones de seguridad, ansiedad, distancia o contradicción emocional dentro de tus vínculos."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <section
+        id="attachment-style-questionnaire"
+        class="overflow-hidden rounded-soft border border-secondary/10 bg-white shadow-soft"
+        data-total={questions.length}
+      >
+        <div class="grid gap-0 lg:grid-cols-[1fr_19rem]">
+          <div class="p-5 md:p-8">
+            <p class="eyebrow">Cuestionario interactivo</p>
+            <h2 class="mt-3 font-display text-3xl font-bold text-ink md:text-5xl">
+              ¿Cuál podría ser tu estilo de apego?
+            </h2>
+            <p class="mt-4 max-w-3xl leading-8 text-ink/70">
+              Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás el conteo por estilo de apego.
+            </p>
+          </div>
+
+          <aside class="border-t border-black/10 bg-soft p-5 md:p-6 lg:border-l lg:border-t-0">
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-sm font-bold text-ink/70">Avance</span>
+              <span class="text-sm font-bold text-secondary"><span data-answered-count>0</span>/{questions.length}</span>
+            </div>
+            <div class="mt-4 h-3 overflow-hidden rounded-full bg-black/10">
+              <div class="h-full rounded-full bg-secondary transition-all duration-300" style="width: 0%" data-progress-bar></div>
+            </div>
+            <div class="mt-5 rounded-2xl border border-black/10 bg-white p-4">
+              <p class="text-sm font-semibold leading-6 text-ink/64" data-missing-text>
+                Faltan {questions.length} respuestas.
+              </p>
+            </div>
+          </aside>
+        </div>
+
+        <form class="grid gap-4 border-t border-black/5 bg-soft p-5 md:p-8" data-questionnaire-form>
+          {
+            questions.map((question, index) => (
+              <article class="rounded-2xl border border-black/10 bg-white p-4 shadow-[0_10px_30px_rgba(26,26,26,0.04)] md:p-5">
+                <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                  <div class="max-w-3xl">
+                    <p class="text-sm font-semibold leading-7 text-ink/78 md:text-base">
+                      <span class="mr-2 font-bold text-secondary">{index + 1}.</span>
+                      {question.text}
+                    </p>
+                    <p class="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-secondary/70">
+                      {question.category}
+                    </p>
+                  </div>
+                  <fieldset class="grid grid-cols-2 gap-2 md:w-44" aria-label={`Respuesta ${index + 1}`}>
+                    {
+                      [
+                        ["yes", "Sí"],
+                        ["no", "No"],
+                      ].map(([value, label]) => {
+                        const inputId = `estilo-apego-${index}-${value}`;
+
+                        return (
+                          <label for={inputId} class="cursor-pointer">
+                            <input
+                              id={inputId}
+                              type="radio"
+                              name={`estilo-apego-${index}`}
+                              value={value}
+                              class="peer sr-only"
+                              data-answer
+                              data-category={question.category}
+                            />
+                            <span class="grid min-h-11 place-items-center rounded-full border border-black/10 bg-soft px-4 text-sm font-bold text-ink/68 transition hover:border-primary hover:text-secondary peer-checked:border-secondary peer-checked:bg-secondary peer-checked:text-white peer-checked:shadow-lift">
+                              {label}
+                            </span>
+                          </label>
+                        );
+                      })
+                    }
+                  </fieldset>
+                </div>
+              </article>
+            ))
+          }
+        </form>
+
+        <div class="flex flex-wrap items-center gap-3 border-t border-black/5 bg-white p-5 md:p-8">
+          <button
+            type="button"
+            class="min-h-12 rounded-full bg-secondary px-6 text-sm font-bold text-white shadow-lift transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:bg-ink/25 disabled:shadow-none disabled:hover:translate-y-0"
+            data-show-result
+            disabled
+          >
+            Ver resultado
+          </button>
+          <button
+            type="button"
+            class="min-h-12 rounded-full border border-black/10 bg-white px-6 text-sm font-bold text-ink/68 transition hover:border-primary hover:text-secondary"
+            data-reset
+          >
+            Reiniciar
+          </button>
+        </div>
+
+        <div class="hidden border-t border-black/5 bg-white p-5 md:p-8" data-result-panel>
+          <div class="overflow-hidden rounded-soft border border-black/10 bg-white shadow-soft">
+            <div class="bg-[#edf8f6] p-6 md:p-8">
+              <p class="eyebrow">Resultado orientativo</p>
+              <h3 class="mt-3 font-display text-3xl font-bold text-ink md:text-5xl" data-result-title></h3>
+              <p class="mt-4 max-w-3xl leading-8 text-ink/72" data-result-detail></p>
+            </div>
+
+            <div class="grid gap-4 bg-soft p-5 md:grid-cols-2 md:p-8">
+              {
+                categories.map((category) => (
+                  <article
+                    class="rounded-2xl border border-black/10 bg-white p-5"
+                    style={`--category-color: ${category.color}; --category-soft: ${category.soft};`}
+                    data-category-card={category.name}
+                  >
+                    <div class="flex items-start justify-between gap-4">
+                      <div>
+                        <p class="text-lg font-bold text-ink">{category.name}</p>
+                        <p class="mt-1 text-xs font-bold uppercase tracking-[0.12em] text-ink/45">
+                          Preguntas {category.questions}
+                        </p>
+                      </div>
+                      <span
+                        class="grid size-12 place-items-center rounded-full text-lg font-bold"
+                        style={`background: ${category.soft}; color: ${category.color};`}
+                        data-category-score={category.name}
+                      >
+                        0
+                      </span>
+                    </div>
+                    <p class="mt-4 text-sm leading-7 text-ink/68">{category.detail}</p>
+                  </article>
+                ))
+              }
+            </div>
+
+            <div class="p-5 md:p-8">
+              <p class="rounded-2xl border border-black/10 bg-white/75 p-5 text-sm font-semibold leading-7 text-ink/64">
+                La categoría con mayor cantidad de respuestas afirmativas representa tu estilo de apego predominante.
+                Muchas personas presentan características de más de un estilo. Este cuestionario busca ayudarte a
+                identificar tendencias generales, no definir quién sos.
+              </p>
+              <p class="mt-4 rounded-2xl border border-black/10 bg-white/75 p-5 text-sm font-semibold leading-7 text-ink/64">
+                {disclaimer}
+              </p>
+              <a
+                href="/contact"
+                class="mt-6 inline-flex min-h-11 items-center rounded-full bg-secondary px-5 text-sm font-bold text-white shadow-lift transition hover:-translate-y-0.5"
+              >
+                Agendar una consulta
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <CTASection title="Comprender tus patrones relacionales puede ayudarte a vincularte con más seguridad." />
+
+  <script is:inline define:vars={{ categories }}>
+    const root = document.getElementById("attachment-style-questionnaire");
+    const categoryData = categories;
+
+    if (root) {
+      const total = Number(root.dataset.total);
+      const form = root.querySelector("[data-questionnaire-form]");
+      const answeredCount = root.querySelector("[data-answered-count]");
+      const progressBar = root.querySelector("[data-progress-bar]");
+      const missingText = root.querySelector("[data-missing-text]");
+      const showResultButton = root.querySelector("[data-show-result]");
+      const resetButton = root.querySelector("[data-reset]");
+      const resultPanel = root.querySelector("[data-result-panel]");
+      const resultTitle = root.querySelector("[data-result-title]");
+      const resultDetail = root.querySelector("[data-result-detail]");
+
+      const getCheckedAnswers = () => Array.from(root.querySelectorAll("input[data-answer]:checked"));
+
+      const getScore = () => {
+        const checkedAnswers = getCheckedAnswers();
+        return {
+          answered: checkedAnswers.length,
+          yesAnswers: checkedAnswers.filter((answer) => answer.value === "yes"),
+        };
+      };
+
+      const updateProgress = () => {
+        const score = getScore();
+        const missing = total - score.answered;
+
+        if (answeredCount) answeredCount.textContent = String(score.answered);
+        if (progressBar) progressBar.style.width = `${(score.answered / total) * 100}%`;
+        if (showResultButton) showResultButton.disabled = score.answered < total;
+        if (missingText) {
+          missingText.textContent =
+            missing === 0 ? "Ya puedes ver tu resultado." : `Faltan ${missing} respuesta${missing === 1 ? "" : "s"}.`;
+        }
+        if (resultPanel) resultPanel.classList.add("hidden");
+      };
+
+      const showResult = () => {
+        const score = getScore();
+        if (score.answered < total) return;
+
+        const counts = Object.fromEntries(categoryData.map((category) => [category.name, 0]));
+        score.yesAnswers.forEach((answer) => {
+          counts[answer.dataset.category] = (counts[answer.dataset.category] ?? 0) + 1;
+        });
+
+        const topScore = Math.max(...Object.values(counts));
+        const topCategories = categoryData.filter((category) => counts[category.name] === topScore);
+        const firstTop = topCategories[0];
+
+        categoryData.forEach((category) => {
+          const scoreNode = root.querySelector(`[data-category-score="${category.name}"]`);
+          const card = root.querySelector(`[data-category-card="${category.name}"]`);
+          if (scoreNode) scoreNode.textContent = String(counts[category.name]);
+          if (card) {
+            card.style.borderColor = topCategories.includes(category) ? category.accent : "rgba(0, 0, 0, 0.1)";
+            card.style.background = topCategories.includes(category)
+              ? `linear-gradient(135deg, ${category.soft} 0%, #ffffff 72%)`
+              : "#ffffff";
+          }
+        });
+
+        if (resultTitle) {
+          resultTitle.textContent =
+            topCategories.length > 1
+              ? `Tendencias combinadas: ${topCategories.map((category) => category.name).join(", ")}`
+              : `Tendencia predominante: ${firstTop.name}`;
+          resultTitle.style.color = firstTop.color;
+        }
+        if (resultDetail) {
+          resultDetail.textContent =
+            topCategories.length > 1
+              ? "Tus respuestas muestran características de más de un estilo de apego. Esto es común y puede variar según el vínculo, el contexto y la etapa de vida."
+              : firstTop.detail;
+        }
+        if (resultPanel) {
+          resultPanel.classList.remove("hidden");
+          resultPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      };
+
+      form?.addEventListener("change", updateProgress);
+      showResultButton?.addEventListener("click", showResult);
+      resetButton?.addEventListener("click", () => {
+        form?.reset();
+        updateProgress();
+      });
+
+      updateProgress();
+    }
+  </script>
+</BaseLayout>

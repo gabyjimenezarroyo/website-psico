@@ -1,0 +1,104 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import QuestionnaireThermometer from "@components/QuestionnaireThermometer.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  "¿Te cuesta reconocer tus logros sin minimizar su importancia?",
+  "¿Sueles enfocarte más en tus errores que en tus avances?",
+  "¿Te comparás frecuentemente con otras personas y sentís que salís perdiendo en la comparación?",
+  "¿Te resulta difícil aceptar elogios sin cuestionarlos o restarles valor?",
+  "¿Sentís que necesitás demostrar constantemente tu valor a través de resultados o rendimiento?",
+  "¿Te hablás a vos misma de una forma más dura de lo que hablarías a alguien que querés?",
+  "¿Te cuesta identificar tus fortalezas con la misma facilidad con la que identificás tus defectos?",
+  "¿Sentís que tu confianza personal cambia mucho dependiendo de cómo te fue durante el día o la semana?",
+  "¿Te resulta difícil sentirte satisfecha con vos misma aunque hayas hecho un buen trabajo?",
+  "¿Con frecuencia sentís que deberías ser mejor de lo que sos actualmente?",
+];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "Autoestima saludable",
+    summary: "Autoestima saludable",
+    thermometerLabel: "Autoestima saludable",
+    detail:
+      "Mostrás una relación relativamente equilibrada con vos misma. Reconocés tus fortalezas y errores sin que definan completamente tu valor personal.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "Atención",
+    summary: "Atención",
+    thermometerLabel: "Necesita fortalecerse",
+    detail:
+      "Existen algunas áreas donde tu autovaloración podría fortalecerse. Es posible que seas más exigente con vos misma de lo necesario.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "Autoestima debilitada",
+    summary: "Autoestima debilitada",
+    thermometerLabel: "Autoestima debilitada",
+    detail:
+      "Tus respuestas sugieren una tendencia importante hacia la autocrítica, la comparación o la dificultad para reconocer tu propio valor.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "Autoestima significativamente afectada",
+    summary: "Autoestima significativamente afectada",
+    thermometerLabel: "Necesitas reconstruir tu relación con vos misma",
+    detail:
+      "Es posible que gran parte de tu bienestar emocional dependa de estándares difíciles de alcanzar o de una visión excesivamente crítica de vos misma.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su objetivo es ayudarte a identificar aspectos de tu autovaloración que merecen atención y reflexión.";
+---
+
+<BaseLayout
+  title="Cuestionario de autoestima"
+  description="Cuestionario interactivo para explorar cómo está tu autoestima actualmente y recibir una interpretación orientativa por colores."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Cuestionario: ¿Cómo está tu autoestima actualmente?"
+    description="Una herramienta breve para observar autocrítica, comparación, exigencia personal y reconocimiento de tu propio valor."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <QuestionnaireThermometer
+        id="autoestima-questionnaire"
+        eyebrow="Termómetro emocional"
+        title="Cuestionario: ¿Cómo está tu autoestima actualmente?"
+        intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
+        questions={questions}
+        resultBands={resultBands}
+        disclaimer={disclaimer}
+      />
+    </div>
+  </section>
+
+  <CTASection title="Reconstruir tu relación con vos misma también puede empezar con una conversación segura." />
+</BaseLayout>

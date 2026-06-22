@@ -1,34 +1,104 @@
 ---
 import CTASection from "@components/CTASection.astro";
-import InfoCards from "@components/InfoCards.astro";
 import PageHero from "@components/PageHero.astro";
-import SelfTest from "@components/react/SelfTest";
+import QuestionnaireThermometer from "@components/QuestionnaireThermometer.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-const items = [
-  { title: "Miedo a perder", text: "La posibilidad de que la otra persona se aleje pesa mas que tus propios limites." },
-  { title: "Culpa al elegirte", text: "Priorizarte se siente egoista, aunque estes emocionalmente agotada." },
-  { title: "Esperar que cambie", text: "Tu paz queda suspendida en la promesa de que la relacion sera distinta." },
-  { title: "Autoabandono", text: "Dejas de escuchar necesidades basicas para sostener el vinculo." },
-  { title: "Ansiedad vincular", text: "Mensajes, silencios o distancia activan miedo intenso y urgencia." },
-  { title: "Limites fragiles", text: "Sabes que algo te duele, pero te cuesta sostener el no." },
+const questions = [
+  "¿Has permanecido más tiempo del que deseabas en una relación porque confiabas en que la otra persona eventualmente cambiaría?",
+  "¿Pasas mucho tiempo pensando en cómo ayudar, motivar o resolver los problemas de alguien cercano?",
+  "¿Sientes que una parte importante de tu valor personal proviene de ser necesaria para otras personas?",
+  "¿Te resulta más fácil identificar las necesidades de los demás que reconocer las tuyas propias?",
+  "¿Has postergado metas, proyectos o decisiones importantes mientras intentabas ayudar a alguien a mejorar su vida?",
+  "¿Con frecuencia te conviertes en la persona que escucha, contiene o sostiene emocionalmente a quienes te rodean?",
+  "¿Te cuesta permitir que otras personas enfrenten las consecuencias naturales de sus decisiones?",
+  "¿Sueles asumir responsabilidades que en realidad corresponden a otras personas?",
+  "¿Te sientes incómoda cuando no hay nadie a quien ayudar, aconsejar o cuidar?",
+  "¿Has invertido grandes cantidades de tiempo y energía intentando que alguien cambie aunque esa persona no parezca comprometida con hacerlo?",
 ];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "Codependencia baja",
+    summary: "Codependencia baja",
+    thermometerLabel: "Apoyo saludable",
+    detail:
+      "Mostrás una buena capacidad para diferenciar tus responsabilidades de las responsabilidades de otras personas. Es probable que puedas brindar apoyo sin perder de vista tus propias necesidades.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "Atención",
+    summary: "Atención",
+    thermometerLabel: "Tendencias codependientes",
+    detail:
+      "Existen algunas tendencias codependientes que merecen observación. Es posible que estés asumiendo más responsabilidad emocional de la que te corresponde.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "Codependencia significativa",
+    summary: "Codependencia significativa",
+    thermometerLabel: "Sobreinvolucramiento emocional",
+    detail:
+      "Tus respuestas sugieren un patrón importante de sobreinvolucramiento en la vida emocional o los problemas de otras personas.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "Codependencia elevada",
+    summary: "Codependencia elevada",
+    thermometerLabel: "Necesitas volver a centrarte en vos",
+    detail:
+      "Es posible que gran parte de tu energía emocional esté orientada a sostener, rescatar o intentar cambiar a otras personas, dejando poco espacio para tus propias necesidades.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su objetivo es ayudarte a identificar patrones relacionales que merecen atención y reflexión.";
 ---
 
-<BaseLayout title="Dependencia emocional: senales y recuperacion" description="Landing sobre dependencia emocional, autoevaluacion, recuperacion y terapia para codependencia.">
-  <PageHero eyebrow="Dependencia emocional" title="Dependencia emocional: volver a elegirte sin culpa" description="La dependencia emocional no significa debilidad. Suele ser una respuesta aprendida al miedo, al abandono y a vinculos donde tus limites no fueron cuidados." secondaryLabel="Hacer self-test" secondaryHref="#self-test" />
-  <section class="section-pad bg-white"><div class="container-premium"><InfoCards items={items} /></div></section>
-  <section class="section-pad">
+<BaseLayout
+  title="Cuestionario de codependencia afectiva"
+  description="Cuestionario interactivo para identificar patrones de codependencia afectiva y recibir una interpretación orientativa por colores."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Cuestionario: ¿Podrías estar viviendo un patrón de codependencia afectiva?"
+    description="Una herramienta breve para observar sobreinvolucramiento emocional, necesidad de rescatar o dificultad para diferenciar tus responsabilidades de las de otras personas."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
     <div class="container-premium">
-      <div class="rounded-[2rem] bg-secondary p-8 text-white shadow-lift md:p-12">
-        <p class="text-sm font-bold uppercase tracking-[0.14em] text-accent">Recovery journey</p>
-        <h2 class="mt-4 max-w-3xl font-display text-5xl font-bold">Del apego ansioso a una relacion mas segura con vos</h2>
-        <div class="mt-8 grid gap-4 md:grid-cols-4">
-          {["Conciencia", "Regulacion", "Limites", "Autonomia"].map((item) => <span class="rounded-2xl bg-white/12 p-5 text-sm font-bold">{item}</span>)}
-        </div>
-      </div>
+      <QuestionnaireThermometer
+        id="codependencia-questionnaire"
+        eyebrow="Termómetro emocional"
+        title="Cuestionario: ¿Podrías estar viviendo un patrón de codependencia afectiva?"
+        intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
+        questions={questions}
+        resultBands={resultBands}
+        disclaimer={disclaimer}
+      />
     </div>
   </section>
-  <section id="self-test" class="section-pad bg-white"><div class="container-premium"><SelfTest type="codependency" client:load /></div></section>
-  <CTASection title="Podes amar sin abandonarte." />
+
+  <CTASection title="Volver a centrarte en vos también puede empezar con una conversación segura." />
 </BaseLayout>

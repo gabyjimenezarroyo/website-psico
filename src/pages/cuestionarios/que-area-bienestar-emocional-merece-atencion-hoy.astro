@@ -1,0 +1,503 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  {
+    text: "Me cuesta identificar claramente lo que siento.",
+    category: "Claridad emocional",
+    guide: "Claridad Emocional",
+  },
+  {
+    text: "Frecuentemente termino agotada emocionalmente después de ciertas relaciones.",
+    category: "Abuso emocional",
+    guide: "Abuso Emocional",
+  },
+  {
+    text: "Me preocupa demasiado perder vínculos importantes.",
+    category: "Dependencia afectiva",
+    guide: "Dependencia Afectiva",
+  },
+  {
+    text: "Suelo intentar resolver problemas que corresponden a otras personas.",
+    category: "Codependencia",
+    guide: "Codependencia Afectiva",
+  },
+  {
+    text: "Me cuesta decir no cuando algo me incomoda.",
+    category: "Límites",
+    guide: "Establecimiento de Límites",
+  },
+  {
+    text: "Soy mucho más crítica conmigo misma de lo que me gustaría.",
+    category: "Autoestima",
+    guide: "Autoestima",
+  },
+  {
+    text: "Las relaciones suelen generar mucho miedo al abandono o al rechazo.",
+    category: "Apego ansioso",
+    guide: "Tipos de Apego",
+    wheelArea: "Apego",
+  },
+  {
+    text: "Me cuesta confiar plenamente en otras personas.",
+    category: "Apego evitativo",
+    guide: "Tipos de Apego",
+    wheelArea: "Apego",
+  },
+  {
+    text: "Siento que algunas personas influyen demasiado en mi forma de pensar o percibir las cosas.",
+    category: "Manipulación psicológica",
+    guide: "Manipulación Psicológica",
+    wheelArea: "Relaciones",
+  },
+  {
+    text: "Con frecuencia siento que mis relaciones giran alrededor de las necesidades de otras personas.",
+    category: "Rasgos narcisistas / desequilibrio relacional",
+    guide: "Relaciones con Rasgos Narcisistas",
+    wheelArea: "Relaciones",
+  },
+];
+
+const wheelAreas = [
+  {
+    name: "Claridad emocional",
+    detail: "Identificar lo que sentís podría ayudarte a ordenar tus necesidades internas.",
+    color: "#16803c",
+    soft: "#ecfdf5",
+    x: 50,
+    y: 11,
+  },
+  {
+    name: "Autoestima",
+    detail: "Fortalecer la relación con vos misma puede sostener cambios más profundos.",
+    color: "#2f6d6a",
+    soft: "#e6fffb",
+    x: 77,
+    y: 22,
+  },
+  {
+    name: "Límites",
+    detail: "Proteger tu tiempo, energía y necesidades puede ser una prioridad actual.",
+    color: "#a16207",
+    soft: "#fefce8",
+    x: 89,
+    y: 50,
+  },
+  {
+    name: "Dependencia afectiva",
+    detail: "Las relaciones podrían estar ocupando un lugar central en tu bienestar emocional.",
+    color: "#c05621",
+    soft: "#fff7ed",
+    x: 77,
+    y: 78,
+  },
+  {
+    name: "Codependencia",
+    detail: "Puede ser útil revisar cuánto estás asumiendo responsabilidades emocionales ajenas.",
+    color: "#c53030",
+    soft: "#fef2f2",
+    x: 50,
+    y: 89,
+  },
+  {
+    name: "Apego",
+    detail: "Tus vínculos podrían activar miedo, distancia, inseguridad o necesidad de protección.",
+    color: "#7c3aed",
+    soft: "#f5f3ff",
+    x: 23,
+    y: 78,
+  },
+  {
+    name: "Relaciones",
+    detail: "Podría ser importante observar dinámicas de influencia, desequilibrio o poca reciprocidad.",
+    color: "#be123c",
+    soft: "#fff1f2",
+    x: 11,
+    y: 50,
+  },
+  {
+    name: "Recuperación emocional",
+    detail: "Tu bienestar puede beneficiarse de apoyo, descanso, claridad y acompañamiento profesional.",
+    color: "#0f766e",
+    soft: "#f0fdfa",
+    x: 23,
+    y: 22,
+  },
+];
+
+const guideOrder = [
+  "Claridad Emocional",
+  "Abuso Emocional",
+  "Manipulación Psicológica",
+  "Dependencia Afectiva",
+  "Relaciones con Rasgos Narcisistas",
+  "Establecimiento de Límites",
+  "Autoestima",
+  "Tipos de Apego",
+  "Codependencia Afectiva",
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su propósito es ayudarte a identificar qué aspecto de tu bienestar emocional merece más atención en este momento.";
+---
+
+<BaseLayout
+  title="¿Qué área de tu bienestar emocional merece más atención hoy?"
+  description="Cuestionario integrador para identificar qué área de tu bienestar emocional podría necesitar más atención en este momento."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="¿Qué área de tu bienestar emocional merece más atención hoy?"
+    description="Un mapa breve para reconocer dónde podrías beneficiarte más de reflexión profunda, claridad o apoyo profesional."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <section
+        id="wellbeing-map-questionnaire"
+        class="overflow-hidden rounded-soft border border-secondary/10 bg-white shadow-soft"
+        data-total={questions.length}
+      >
+        <div class="grid gap-0 lg:grid-cols-[1fr_19rem]">
+          <div class="p-5 md:p-8">
+            <p class="eyebrow">Cuestionario integrador</p>
+            <h2 class="mt-3 font-display text-3xl font-bold text-ink md:text-5xl">
+              Tu mapa emocional actual
+            </h2>
+            <p class="mt-4 max-w-3xl leading-8 text-ink/70">
+              Responde Sí o No a cada afirmación. Cada respuesta apunta a un área específica de crecimiento emocional.
+            </p>
+          </div>
+
+          <aside class="border-t border-black/10 bg-soft p-5 md:p-6 lg:border-l lg:border-t-0">
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-sm font-bold text-ink/70">Avance</span>
+              <span class="text-sm font-bold text-secondary"><span data-answered-count>0</span>/{questions.length}</span>
+            </div>
+            <div class="mt-4 h-3 overflow-hidden rounded-full bg-black/10">
+              <div class="h-full rounded-full bg-secondary transition-all duration-300" style="width: 0%" data-progress-bar></div>
+            </div>
+            <div class="mt-5 rounded-2xl border border-black/10 bg-white p-4">
+              <p class="text-sm font-semibold leading-6 text-ink/64" data-missing-text>
+                Faltan {questions.length} respuestas.
+              </p>
+            </div>
+          </aside>
+        </div>
+
+        <form class="grid gap-4 border-t border-black/5 bg-soft p-5 md:p-8" data-questionnaire-form>
+          {
+            questions.map((question, index) => (
+              <article class="rounded-2xl border border-black/10 bg-white p-4 shadow-[0_10px_30px_rgba(26,26,26,0.04)] md:p-5">
+                <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                  <div class="max-w-3xl">
+                    <p class="text-sm font-semibold leading-7 text-ink/78 md:text-base">
+                      <span class="mr-2 font-bold text-secondary">{index + 1}.</span>
+                      {question.text}
+                    </p>
+                    <p class="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-secondary/70">
+                      {question.category}
+                    </p>
+                  </div>
+                  <fieldset class="grid grid-cols-2 gap-2 md:w-44" aria-label={`Respuesta ${index + 1}`}>
+                    {
+                      [
+                        ["yes", "Sí"],
+                        ["no", "No"],
+                      ].map(([value, label]) => {
+                        const inputId = `bienestar-emocional-${index}-${value}`;
+
+                        return (
+                          <label for={inputId} class="cursor-pointer">
+                            <input
+                              id={inputId}
+                              type="radio"
+                              name={`bienestar-emocional-${index}`}
+                              value={value}
+                              class="peer sr-only"
+                              data-answer
+                              data-category={question.category}
+                              data-guide={question.guide}
+                              data-wheel-area={question.wheelArea ?? question.category}
+                            />
+                            <span class="grid min-h-11 place-items-center rounded-full border border-black/10 bg-soft px-4 text-sm font-bold text-ink/68 transition hover:border-primary hover:text-secondary peer-checked:border-secondary peer-checked:bg-secondary peer-checked:text-white peer-checked:shadow-lift">
+                              {label}
+                            </span>
+                          </label>
+                        );
+                      })
+                    }
+                  </fieldset>
+                </div>
+              </article>
+            ))
+          }
+        </form>
+
+        <div class="flex flex-wrap items-center gap-3 border-t border-black/5 bg-white p-5 md:p-8">
+          <button
+            type="button"
+            class="min-h-12 rounded-full bg-secondary px-6 text-sm font-bold text-white shadow-lift transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:bg-ink/25 disabled:shadow-none disabled:hover:translate-y-0"
+            data-show-result
+            disabled
+          >
+            Ver mi mapa emocional
+          </button>
+          <button
+            type="button"
+            class="min-h-12 rounded-full border border-black/10 bg-white px-6 text-sm font-bold text-ink/68 transition hover:border-primary hover:text-secondary"
+            data-reset
+          >
+            Reiniciar
+          </button>
+        </div>
+
+        <div class="hidden border-t border-black/5 bg-white p-5 md:p-8" data-result-panel>
+          <div class="grid gap-0 overflow-hidden rounded-soft border border-black/10 bg-white shadow-soft lg:grid-cols-[27rem_1fr]">
+            <div class="relative overflow-hidden bg-[#edf8f6] p-5 md:p-8">
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(78,202,194,0.28),transparent_34%),linear-gradient(160deg,rgba(255,255,255,0.94),rgba(141,224,216,0.16)_58%,rgba(47,109,106,0.08))]"></div>
+              <div class="relative">
+                <p class="text-center text-sm font-bold uppercase tracking-[0.12em] text-secondary/80">
+                  Rueda de bienestar emocional
+                </p>
+                <div class="relative mx-auto mt-7 aspect-square max-w-[23rem] rounded-full border border-secondary/15 bg-white/65 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.75),0_24px_70px_rgba(47,109,106,0.12)]">
+                  <div class="absolute inset-[16%] rounded-full border border-secondary/10"></div>
+                  <div class="absolute inset-[31%] rounded-full border border-secondary/10"></div>
+                  <div class="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white p-4 text-center shadow-soft">
+                    <span class="grid size-full place-items-center rounded-full bg-primary/20 text-xs font-bold uppercase leading-4 text-secondary">
+                      Mapa actual
+                    </span>
+                  </div>
+                  {
+                    wheelAreas.map((area) => (
+                      <div
+                        class="absolute -translate-x-1/2 -translate-y-1/2"
+                        style={`left: ${area.x}%; top: ${area.y}%;`}
+                      >
+                        <div
+                          class="grid size-16 place-items-center rounded-full border-2 border-white text-center text-[0.65rem] font-bold leading-3 shadow-[0_12px_30px_rgba(47,109,106,0.14)] transition-all duration-500"
+                          style={`background: ${area.soft}; color: ${area.color};`}
+                          data-wheel-node={area.name}
+                        >
+                          {area.name}
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 md:p-8">
+              <p class="eyebrow">Resultado</p>
+              <h3 class="mt-3 font-display text-3xl font-bold text-ink md:text-5xl">Tu mapa emocional actual</h3>
+              <div class="mt-7 grid gap-4">
+                <article class="rounded-2xl border border-black/10 bg-soft p-5" data-result-slot="principal">
+                  <p class="text-xs font-bold uppercase tracking-[0.12em] text-secondary/70">Área principal</p>
+                  <h4 class="mt-2 text-2xl font-bold text-ink" data-result-name>Sin área seleccionada</h4>
+                  <p class="mt-3 leading-7 text-ink/68" data-result-detail>Respondé el cuestionario para ver tu mapa.</p>
+                </article>
+                <article class="rounded-2xl border border-black/10 bg-white p-5" data-result-slot="secondary">
+                  <p class="text-xs font-bold uppercase tracking-[0.12em] text-secondary/70">Área secundaria</p>
+                  <h4 class="mt-2 text-xl font-bold text-ink" data-result-name>Por definir</h4>
+                  <p class="mt-3 leading-7 text-ink/68" data-result-detail></p>
+                </article>
+                <article class="rounded-2xl border border-black/10 bg-white p-5" data-result-slot="complementary">
+                  <p class="text-xs font-bold uppercase tracking-[0.12em] text-secondary/70">Área complementaria</p>
+                  <h4 class="mt-2 text-xl font-bold text-ink" data-result-name>Por definir</h4>
+                  <p class="mt-3 leading-7 text-ink/68" data-result-detail></p>
+                </article>
+              </div>
+
+              <div class="mt-6 rounded-2xl border border-secondary/15 bg-primary/10 p-5">
+                <p class="text-sm font-bold uppercase tracking-[0.12em] text-secondary">Próximo paso recomendado</p>
+                <ol class="mt-4 grid gap-2 text-sm font-semibold leading-7 text-ink/72" data-next-steps></ol>
+              </div>
+
+              <div class="mt-6 rounded-2xl border border-black/10 bg-white p-5">
+                <p class="text-sm font-bold text-ink">Guías sugeridas según tus respuestas</p>
+                <div class="mt-4 flex flex-wrap gap-2" data-guide-list></div>
+              </div>
+
+              <p class="mt-6 rounded-2xl border border-black/10 bg-white/75 p-5 text-sm font-semibold leading-7 text-ink/64">
+                No se trata de encontrar un problema. Se trata de descubrir dónde podrías beneficiarte más de una reflexión profunda o de apoyo profesional.
+              </p>
+              <p class="mt-4 rounded-2xl border border-black/10 bg-white/75 p-5 text-sm font-semibold leading-7 text-ink/64">
+                {disclaimer}
+              </p>
+              <blockquote class="mt-6 border-l-4 border-primary pl-5 font-display text-2xl font-bold leading-tight text-secondary">
+                "A veces el primer paso no es cambiar. Es entender qué necesita atención."
+              </blockquote>
+              <p class="mt-3 text-sm font-bold text-ink/55">Gaby Jiménez - Psicóloga</p>
+              <a
+                href="/contact"
+                class="mt-6 inline-flex min-h-11 items-center rounded-full bg-secondary px-5 text-sm font-bold text-white shadow-lift transition hover:-translate-y-0.5"
+              >
+                Agendar una consulta
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <CTASection title="Entender qué necesita atención puede abrir el siguiente paso." />
+
+  <script is:inline define:vars={{ wheelAreas, guideOrder }}>
+    const root = document.getElementById("wellbeing-map-questionnaire");
+    const areas = wheelAreas;
+    const orderedGuides = guideOrder;
+
+    if (root) {
+      const total = Number(root.dataset.total);
+      const form = root.querySelector("[data-questionnaire-form]");
+      const answeredCount = root.querySelector("[data-answered-count]");
+      const progressBar = root.querySelector("[data-progress-bar]");
+      const missingText = root.querySelector("[data-missing-text]");
+      const showResultButton = root.querySelector("[data-show-result]");
+      const resetButton = root.querySelector("[data-reset]");
+      const resultPanel = root.querySelector("[data-result-panel]");
+      const guideList = root.querySelector("[data-guide-list]");
+      const nextSteps = root.querySelector("[data-next-steps]");
+
+      const getCheckedAnswers = () => Array.from(root.querySelectorAll("input[data-answer]:checked"));
+      const getScore = () => {
+        const checkedAnswers = getCheckedAnswers();
+        return {
+          answered: checkedAnswers.length,
+          yesAnswers: checkedAnswers.filter((answer) => answer.value === "yes"),
+        };
+      };
+
+      const updateProgress = () => {
+        const score = getScore();
+        const missing = total - score.answered;
+
+        if (answeredCount) answeredCount.textContent = String(score.answered);
+        if (progressBar) progressBar.style.width = `${(score.answered / total) * 100}%`;
+        if (showResultButton) showResultButton.disabled = score.answered < total;
+        if (missingText) {
+          missingText.textContent =
+            missing === 0 ? "Ya puedes ver tu mapa emocional." : `Faltan ${missing} respuesta${missing === 1 ? "" : "s"}.`;
+        }
+        if (resultPanel) resultPanel.classList.add("hidden");
+      };
+
+      const setSlot = (slotName, area, fallbackTitle, fallbackDetail) => {
+        const slot = root.querySelector(`[data-result-slot="${slotName}"]`);
+        if (!slot) return;
+
+        const title = slot.querySelector("[data-result-name]");
+        const detail = slot.querySelector("[data-result-detail]");
+
+        if (title) title.textContent = area ? area.name : fallbackTitle;
+        if (detail) detail.textContent = area ? area.detail : fallbackDetail;
+        if (area) {
+          slot.style.background = `linear-gradient(135deg, ${area.soft} 0%, #ffffff 72%)`;
+          slot.style.borderColor = area.color;
+        }
+      };
+
+      const showResult = () => {
+        const score = getScore();
+        if (score.answered < total) return;
+
+        const counts = Object.fromEntries(areas.map((area) => [area.name, 0]));
+        const selectedGuides = new Set();
+
+        score.yesAnswers.forEach((answer) => {
+          const areaName = answer.dataset.wheelArea;
+          counts[areaName] = (counts[areaName] ?? 0) + 1;
+          selectedGuides.add(answer.dataset.guide);
+        });
+
+        const ranked = areas
+          .map((area) => ({ ...area, score: counts[area.name] ?? 0 }))
+          .filter((area) => area.score > 0)
+          .sort((a, b) => b.score - a.score);
+
+        const fallback = {
+          name: "Recuperación emocional",
+          detail:
+            "Tus respuestas no marcan un área urgente. Podés usar este momento para cuidar tu bienestar, descansar y seguir fortaleciendo tus recursos emocionales.",
+          color: "#0f766e",
+          soft: "#f0fdfa",
+        };
+
+        const principal = ranked[0] ?? fallback;
+        const secondary = ranked[1] ?? null;
+        const complementary = ranked[2] ?? null;
+
+        setSlot("principal", principal, "Bienestar preservado", fallback.detail);
+        setSlot("secondary", secondary, "Sin área secundaria marcada", "No apareció una segunda área clara en tus respuestas.");
+        setSlot("complementary", complementary, "Sin área complementaria marcada", "No apareció una tercera área clara en tus respuestas.");
+
+        areas.forEach((area) => {
+          const node = root.querySelector(`[data-wheel-node="${area.name}"]`);
+          if (!node) return;
+          const scoreValue = counts[area.name] ?? 0;
+          node.style.transform = scoreValue > 0 ? "scale(1.14)" : "scale(1)";
+          node.style.opacity = scoreValue > 0 ? "1" : "0.54";
+          node.style.boxShadow =
+            scoreValue > 0 ? `0 18px 38px ${area.color}33, 0 0 0 ${Math.min(scoreValue, 3) * 5}px ${area.color}14` : "";
+        });
+
+        if (nextSteps) {
+          const steps = ranked.slice(0, 3);
+          nextSteps.innerHTML = "";
+          if (steps.length === 0) {
+            const item = document.createElement("li");
+            item.textContent = "Continuá observando tu bienestar emocional y fortaleciendo tus recursos actuales.";
+            nextSteps.append(item);
+          } else {
+            steps.forEach((area, index) => {
+              const item = document.createElement("li");
+              const prefix = index === 0 ? "Comenzá explorando" : index === 1 ? "Luego trabajá en" : "Finalmente fortalecé";
+              item.textContent = `${prefix} ${area.name}.`;
+              nextSteps.append(item);
+            });
+          }
+        }
+
+        if (guideList) {
+          guideList.innerHTML = "";
+          const guides = orderedGuides.filter((guide) => selectedGuides.has(guide));
+          if (guides.length === 0) {
+            const empty = document.createElement("span");
+            empty.className = "rounded-full bg-soft px-4 py-2 text-sm font-bold text-ink/62";
+            empty.textContent = "No apareció una guía prioritaria en tus respuestas.";
+            guideList.append(empty);
+          } else {
+            guides.forEach((guide) => {
+              const chip = document.createElement("span");
+              chip.className = "rounded-full bg-primary/15 px-4 py-2 text-sm font-bold text-secondary";
+              chip.textContent = `✓ ${guide}`;
+              guideList.append(chip);
+            });
+          }
+        }
+
+        if (resultPanel) {
+          resultPanel.classList.remove("hidden");
+          resultPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      };
+
+      form?.addEventListener("change", updateProgress);
+      showResultButton?.addEventListener("click", showResult);
+      resetButton?.addEventListener("click", () => {
+        form?.reset();
+        updateProgress();
+      });
+
+      updateProgress();
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,115 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import QuestionnaireThermometer from "@components/QuestionnaireThermometer.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  "¿Con frecuencia solucionas problemas que surgieron como consecuencia directa de la conducta adictiva de otra persona?",
+  "¿Has cubierto económicamente situaciones que esa persona podría haber enfrentado por sí misma?",
+  "¿Has mentido o ocultado información para protegerla de consecuencias o conflictos?",
+  "¿Te resulta difícil permitir que experimente las consecuencias naturales de sus decisiones?",
+  "¿Has cancelado límites que previamente habías establecido?",
+  "¿Sientes culpa cuando decides no ayudar?",
+  "¿Con frecuencia haces por esa persona cosas que podría hacer por sí misma?",
+  "¿Temes que establecer límites pueda empeorar la situación?",
+  "¿Intentas evitar cualquier situación que pueda generar incomodidad, enojo o frustración en la otra persona?",
+  "¿Sientes que has asumido responsabilidades que no te corresponden para mantener la estabilidad familiar?",
+];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "Apoyo saludable",
+    summary: "Apoyo saludable",
+    thermometerLabel: "Apoyo saludable",
+    detail:
+      "Es probable que estés brindando ayuda sin asumir responsabilidades que pertenecen a otra persona.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "Atención",
+    summary: "Atención",
+    thermometerLabel: "Señales de sobreprotección",
+    detail:
+      "Algunas conductas podrían estar reduciendo el impacto natural de las consecuencias que favorecen el cambio.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "Facilitación significativa",
+    summary: "Facilitación significativa",
+    thermometerLabel: "Facilitación preocupante",
+    detail: "Es posible que ciertas formas de ayuda estén manteniendo involuntariamente el problema.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "Facilitación elevada",
+    summary: "Facilitación elevada",
+    thermometerLabel: "Necesitas revisar tu forma de ayudar",
+    detail:
+      "Tus respuestas sugieren un patrón importante de rescate o sobreprotección que merece ser revisado.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su objetivo es ayudarte a reflexionar sobre la diferencia entre apoyar y facilitar una conducta problemática.";
+---
+
+<BaseLayout
+  title="Cuestionario sobre ayudar o facilitar una adicción"
+  description="Cuestionario interactivo para reflexionar sobre la diferencia entre apoyar y facilitar una conducta adictiva."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Cuestionario: ¿Estoy ayudando o estoy facilitando la adicción?"
+    description="Una herramienta breve para observar si tu forma de ayudar está protegiendo tu bienestar o sosteniendo consecuencias que no te corresponden."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <QuestionnaireThermometer
+        id="ayudo-o-facilito-adiccion-questionnaire"
+        eyebrow="Termómetro emocional"
+        title="Cuestionario: ¿Estoy ayudando o estoy facilitando la adicción?"
+        intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
+        questions={questions}
+        resultBands={resultBands}
+        disclaimer={disclaimer}
+      />
+
+      <div class="mt-8 rounded-soft border border-secondary/10 bg-soft p-6 shadow-soft md:p-8">
+        <p class="font-display text-2xl font-bold text-ink md:text-3xl">
+          ¿Te gustaría recibir una guía gratuita para aprender a ayudar sin sostener la adicción?
+        </p>
+        <a
+          href="/contact"
+          class="mt-5 inline-flex min-h-11 items-center rounded-full bg-secondary px-5 text-sm font-bold text-white shadow-lift transition hover:-translate-y-0.5"
+        >
+          Solicitar guía
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="Ayudar también implica aprender dónde terminan tus responsabilidades." />
+</BaseLayout>

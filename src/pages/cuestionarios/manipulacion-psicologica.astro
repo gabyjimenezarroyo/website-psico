@@ -1,0 +1,104 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import QuestionnaireThermometer from "@components/QuestionnaireThermometer.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  "¿Sientes que algunas conversaciones terminan desviándose del tema principal sin llegar a resolver lo que intentabas plantear?",
+  "¿La otra persona suele utilizar hechos pasados para invalidar preocupaciones actuales?",
+  "¿Con frecuencia terminas explicando o defendiendo emociones que deberían ser fáciles de comprender?",
+  "¿Sientes que ciertas discusiones se vuelven tan complejas que pierdes de vista el problema original?",
+  "¿La otra persona cambia su versión de los hechos dependiendo del contexto o de quién esté presente?",
+  "¿Has notado que algunas promesas importantes se repiten, pero rara vez se traducen en cambios concretos?",
+  "¿Sientes que ciertas conversaciones terminan generando más dudas que claridad?",
+  "¿La otra persona suele enfocarse en detalles menores para evitar abordar el tema principal?",
+  "¿Te encuentras revisando repetidamente conversaciones para intentar entender qué ocurrió realmente?",
+  "¿Después de ciertos conflictos te resulta difícil confiar plenamente en tus conclusiones?",
+];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "Riesgo bajo",
+    summary: "Riesgo bajo",
+    thermometerLabel: "Comunicación generalmente saludable",
+    detail:
+      "No aparecen indicadores importantes de manipulación psicológica. Las diferencias y desacuerdos forman parte natural de cualquier relación saludable.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "Atención",
+    summary: "Atención",
+    thermometerLabel: "Señales de alerta",
+    detail:
+      "Existen algunas dinámicas que merecen observación. La comunicación podría estar generando confusión o desgaste emocional innecesario.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "Riesgo elevado",
+    summary: "Riesgo elevado",
+    thermometerLabel: "Patrón preocupante",
+    detail:
+      "Se observan varios patrones compatibles con manipulación psicológica. Comprender estas dinámicas puede ayudarte a proteger tu bienestar emocional.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "Riesgo alto",
+    summary: "Riesgo alto",
+    thermometerLabel: "Necesitas claridad y apoyo",
+    detail:
+      "Tus respuestas sugieren una exposición frecuente a estrategias de influencia o control emocional que podrían estar afectando tu percepción, seguridad o tranquilidad.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico. Su objetivo es ayudarte a identificar señales que merecen atención y reflexión.";
+---
+
+<BaseLayout
+  title="Cuestionario de manipulación psicológica"
+  description="Cuestionario interactivo para identificar señales de manipulación psicológica y recibir una interpretación orientativa por colores."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Cuestionario: ¿Podrías estar siendo víctima de manipulación psicológica?"
+    description="Una herramienta breve para observar patrones de confusión, evasión, cambios de versión y desgaste emocional en la comunicación."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <QuestionnaireThermometer
+        id="manipulacion-psicologica-questionnaire"
+        eyebrow="Termómetro emocional"
+        title="Cuestionario: ¿Podrías estar siendo víctima de manipulación psicológica?"
+        intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
+        questions={questions}
+        resultBands={resultBands}
+        disclaimer={disclaimer}
+      />
+    </div>
+  </section>
+
+  <CTASection title="Recuperar claridad también puede empezar con una conversación segura." />
+</BaseLayout>

@@ -1,0 +1,104 @@
+---
+import CTASection from "@components/CTASection.astro";
+import PageHero from "@components/PageHero.astro";
+import QuestionnaireThermometer from "@components/QuestionnaireThermometer.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const questions = [
+  "¿Sientes que tus logros, necesidades o experiencias suelen recibir menos atención que los de la otra persona?",
+  "¿La otra persona parece tener dificultades para comprender genuinamente cómo te afectan sus acciones?",
+  "¿Con frecuencia terminas ocupando el rol de quien comprende, justifica o contiene emocionalmente a la otra persona?",
+  "¿Sientes que expresar una necesidad legítima suele generar molestia, defensividad o incomodidad en la otra persona?",
+  "¿La otra persona suele presentarse como la principal afectada cuando intentas hablar de un problema en la relación?",
+  "¿Has notado que tus emociones reciben apoyo cuando coinciden con los intereses de la otra persona, pero menos atención cuando no es así?",
+  "¿Sientes que existe una necesidad constante de reconocimiento, admiración o validación por parte de la otra persona?",
+  "¿La relación parece girar frecuentemente alrededor de los deseos, preocupaciones o expectativas de la otra persona?",
+  "¿Te has encontrado reduciendo tus expectativas para evitar sentirte decepcionada repetidamente?",
+  "¿Sientes que das mucho espacio emocional dentro de la relación mientras tus propias necesidades reciben poco espacio?",
+];
+
+const resultBands = [
+  {
+    min: 0,
+    max: 2,
+    level: "Riesgo bajo",
+    summary: "Riesgo bajo",
+    thermometerLabel: "Relación con buena reciprocidad",
+    detail:
+      "No aparecen señales importantes asociadas a dinámicas relacionales compatibles con rasgos narcisistas.",
+    color: "#16803c",
+    accent: "#10b981",
+    soft: "#ecfdf5",
+  },
+  {
+    min: 3,
+    max: 5,
+    level: "Atención",
+    summary: "Atención",
+    thermometerLabel: "Señales de alerta",
+    detail:
+      "Existen algunos patrones que merecen observación. La relación podría presentar desequilibrios en empatía, reciprocidad o validación emocional.",
+    color: "#a16207",
+    accent: "#facc15",
+    soft: "#fefce8",
+  },
+  {
+    min: 6,
+    max: 8,
+    level: "Riesgo elevado",
+    summary: "Riesgo elevado",
+    thermometerLabel: "Patrón relacional preocupante",
+    detail:
+      "Se observan múltiples señales compatibles con relaciones donde predominan dinámicas asociadas a rasgos narcisistas.",
+    color: "#c05621",
+    accent: "#fb923c",
+    soft: "#fff7ed",
+  },
+  {
+    min: 9,
+    max: 10,
+    level: "Riesgo alto",
+    summary: "Riesgo alto",
+    thermometerLabel: "Necesitas claridad y apoyo",
+    detail:
+      "Tus respuestas sugieren una acumulación importante de señales de alerta que podrían estar afectando significativamente tu bienestar emocional.",
+    color: "#c53030",
+    accent: "#ef4444",
+    soft: "#fef2f2",
+  },
+];
+
+const disclaimer =
+  "Este resultado no constituye un diagnóstico psicológico ni permite determinar si una persona tiene un trastorno de personalidad. Su objetivo es ayudarte a identificar dinámicas relacionales que merecen atención y reflexión.";
+---
+
+<BaseLayout
+  title="Cuestionario de rasgos narcisistas"
+  description="Cuestionario interactivo para identificar señales de alerta de rasgos narcisistas en una relación."
+>
+  <PageHero
+    eyebrow="Cuestionarios"
+    title="Cuestionario: ¿Existen señales de alerta de rasgos narcisistas en tu relación?"
+    description="Una herramienta breve para observar desequilibrios de empatía, reciprocidad, validación emocional y espacio afectivo dentro de una relación."
+    primaryLabel="Responder cuestionario"
+    primaryHref="#cuestionario"
+    secondaryLabel="Agendar consulta"
+    secondaryHref="/contact"
+  />
+
+  <section id="cuestionario" class="section-pad bg-white">
+    <div class="container-premium">
+      <QuestionnaireThermometer
+        id="rasgos-narcicistas-questionnaire"
+        eyebrow="Termómetro emocional"
+        title="Cuestionario: ¿Existen señales de alerta de rasgos narcisistas en tu relación?"
+        intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
+        questions={questions}
+        resultBands={resultBands}
+        disclaimer={disclaimer}
+      />
+    </div>
+  </section>
+
+  <CTASection title="Ponerle nombre a lo que vivís puede ayudarte a recuperar claridad." />
+</BaseLayout>
