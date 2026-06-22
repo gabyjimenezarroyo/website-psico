@@ -28,16 +28,22 @@ export const navItems: Array<NavLink | NavGroup> = [
     children: [
       { href: "/emotional-abuse", label: "Abuso emocional" },
       { href: "/codependencia", label: "Dependencia emocional" },
-      { href: "/adiccion", label: "Adicciones" },
+    ],
+  },
+  {
+    label: "Adicciónes",
+    children: [
+      { href: "/cuestionarios/adiccion-de-otros-me-afecta", label: "¿Me afecta la adicción de otros?" },
+      { href: "/cuestionarios/adicciones", label: "¿Mi relación con esta conducta se está volviendo problemática?" },
+      { href: "/cuestionarios/ayudo-o-facilito-la-adiccion", label: "¿Ayudo o facilito la adicción?" },
+
     ],
   },
   {
     label: "Cuestionarios",
     children: [
       { href: "/cuestionarios/abuso-emocional", label: "Abuso emocional" },
-      { href: "/cuestionarios/adiccion-de-otros-me-afecta", label: "¿Me afecta la adicción de otros?" },
-      { href: "/cuestionarios/adicciones", label: "Adicciones" },
-      { href: "/cuestionarios/ayudo-o-facilito-la-adiccion", label: "¿Ayudo o facilito la adicción?" },
+      
       { href: "/cuestionarios/autoestima", label: "Autoestima" },
       { href: "/cuestionarios/claridad_emocional", label: "Claridad emocional" },
       { href: "/cuestionarios/codependencia", label: "Codependencia" },
