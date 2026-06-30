@@ -13,8 +13,33 @@ const signs = [
   "Vivis con ansiedad.",
   "Tenes miedo de estar sola.",
 ];
-const before = ["Confusion", "Fear", "Anxiety", "Guilt", "Emotional exhaustion"];
-const after = ["Boundaries", "Confidence", "Self-worth", "Emotional regulation", "Freedom"];
+const transformationSteps = [
+  {
+    before: "Confusión",
+    after: "Claridad interna",
+    text: "Ordenar lo vivido para dejar de dudar de tu percepción.",
+  },
+  {
+    before: "Miedo",
+    after: "Seguridad emocional",
+    text: "Reconocer señales de riesgo sin vivir en alerta permanente.",
+  },
+  {
+    before: "Ansiedad",
+    after: "Regulación",
+    text: "Volver al cuerpo, respirar y responder con más calma.",
+  },
+  {
+    before: "Culpa",
+    after: "Límites",
+    text: "Diferenciar responsabilidad de manipulación emocional.",
+  },
+  {
+    before: "Agotamiento",
+    after: "Libertad",
+    text: "Recuperar energía para elegir desde tu propio centro.",
+  },
+];
 ---
 
 <BaseLayout
@@ -67,14 +92,35 @@ const after = ["Boundaries", "Confidence", "Self-worth", "Emotional regulation",
   <section class="section-pad bg-white">
     <div class="container-premium">
       <SectionHeading eyebrow="Transformacion" title="Un proceso para volver a vos" description="La terapia no borra tu historia; te ayuda a mirarla sin miedo y a construir una vida con limites, calma y dignidad." align="center" />
-      <div class="mt-12 grid gap-6 md:grid-cols-2">
-        <div class="rounded-[2rem] border border-black/5 bg-soft p-7 shadow-soft">
-          <p class="font-display text-3xl font-bold text-ink">Before Therapy</p>
-          <div class="mt-6 grid gap-3">{before.map((item) => <span class="rounded-full bg-white px-5 py-3 text-sm font-bold text-ink/64">{item}</span>)}</div>
+      <div class="transformation-map mt-12">
+        <div class="transformation-panel transformation-panel-before">
+          <p class="transformation-kicker">Antes</p>
+          <h3>Vivir desde la supervivencia</h3>
         </div>
-        <div class="rounded-[2rem] bg-secondary p-7 text-white shadow-lift">
-          <p class="font-display text-3xl font-bold">After Therapy</p>
-          <div class="mt-6 grid gap-3">{after.map((item) => <span class="rounded-full bg-white/12 px-5 py-3 text-sm font-bold text-white">{item}</span>)}</div>
+
+        <div class="transformation-bridge" aria-hidden="true">
+          <span>Proceso terapéutico</span>
+        </div>
+
+        <div class="transformation-panel transformation-panel-after">
+          <p class="transformation-kicker">Después</p>
+          <h3>Volver a tu centro</h3>
+        </div>
+
+        <div class="transformation-steps">
+          {transformationSteps.map((step, index) => (
+            <article class="transformation-step" style={`--i:${index + 1};`}>
+              <div class="step-before">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{step.before}</strong>
+              </div>
+              <div class="step-line" aria-hidden="true"></div>
+              <div class="step-after">
+                <strong>{step.after}</strong>
+                <p>{step.text}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </div>
@@ -99,3 +145,229 @@ const after = ["Boundaries", "Confidence", "Self-worth", "Emotional regulation",
 
   <CTASection />
 </BaseLayout>
+
+<style>
+  .transformation-map {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .transformation-map::before {
+    content: "";
+    position: absolute;
+    inset: 3rem 9% auto;
+    height: 16rem;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(212, 106, 93, 0.16), transparent 15rem),
+      radial-gradient(circle at 80% 50%, rgba(78, 202, 194, 0.22), transparent 15rem);
+    pointer-events: none;
+  }
+
+  .transformation-panel {
+    position: relative;
+    min-height: 14.5rem;
+    overflow: hidden;
+    border-radius: 2rem;
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    box-shadow: 0 24px 70px rgba(26, 26, 26, 0.08);
+  }
+
+  .transformation-panel::after {
+    content: "";
+    position: absolute;
+    width: 13rem;
+    height: 13rem;
+    border-radius: 999px;
+    opacity: 0.42;
+  }
+
+  .transformation-panel-before {
+    border: 1px solid rgba(47, 109, 106, 0.1);
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(250, 250, 250, 0.94)),
+      radial-gradient(circle at 12% 18%, rgba(212, 106, 93, 0.18), transparent 17rem);
+  }
+
+  .transformation-panel-before::after {
+    right: -3rem;
+    bottom: -4rem;
+    background: rgba(212, 106, 93, 0.22);
+  }
+
+  .transformation-panel-after {
+    background:
+      radial-gradient(circle at 85% 20%, rgba(141, 224, 216, 0.24), transparent 16rem),
+      linear-gradient(145deg, #2f6d6a, #3f7772);
+    color: #ffffff;
+  }
+
+  .transformation-panel-after::after {
+    left: -4rem;
+    bottom: -4rem;
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .transformation-kicker {
+    position: relative;
+    z-index: 1;
+    color: #2f6d6a;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .transformation-panel-after .transformation-kicker {
+    color: #8de0d8;
+  }
+
+  .transformation-panel h3 {
+    position: relative;
+    z-index: 1;
+    margin: 1.25rem 0 0;
+    max-width: 21rem;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.35rem, 3.25vw, 3.65rem);
+    line-height: 1;
+  }
+
+  .transformation-bridge {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    width: 4.25rem;
+    place-items: center;
+  }
+
+  .transformation-bridge::before {
+    content: "";
+    position: absolute;
+    top: 1.25rem;
+    bottom: 1.25rem;
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(212, 106, 93, 0.35), rgba(78, 202, 194, 0.9));
+  }
+
+  .transformation-bridge span {
+    position: relative;
+    display: grid;
+    width: 4.25rem;
+    height: 4.25rem;
+    place-items: center;
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 18px 45px rgba(47, 109, 106, 0.16);
+    color: #2f6d6a;
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1.1;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .transformation-steps {
+    position: relative;
+    z-index: 3;
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 0.25rem;
+    padding-inline: clamp(1rem, 4vw, 3rem);
+  }
+
+  .transformation-step {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.85fr) minmax(3rem, 0.22fr) minmax(14rem, 1.15fr);
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .step-before,
+  .step-after {
+    min-height: 4.75rem;
+    border-radius: 999px;
+    box-shadow: 0 18px 45px rgba(26, 26, 26, 0.08);
+  }
+
+  .step-before {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    border: 1px solid rgba(212, 106, 93, 0.14);
+    background: rgba(255, 255, 255, 0.94);
+    padding: 0.8rem 1.1rem;
+  }
+
+  .step-before span {
+    display: grid;
+    flex: 0 0 auto;
+    width: 2.9rem;
+    height: 2.9rem;
+    place-items: center;
+    border-radius: 999px;
+    background: rgba(212, 106, 93, 0.14);
+    color: #c86155;
+    font-size: 0.78rem;
+    font-weight: 900;
+  }
+
+  .step-before strong,
+  .step-after strong {
+    color: #1a1a1a;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .step-line {
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(212, 106, 93, 0.32), rgba(78, 202, 194, 0.9));
+  }
+
+  .step-after {
+    display: grid;
+    align-content: center;
+    gap: 0.2rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.8rem 1.3rem;
+  }
+
+  .step-after p {
+    margin: 0;
+    color: rgba(26, 26, 26, 0.62);
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 820px) {
+    .transformation-map {
+      grid-template-columns: 1fr;
+    }
+
+    .transformation-bridge {
+      display: none;
+    }
+
+    .transformation-steps {
+      margin-top: 0;
+      padding-inline: 0.75rem;
+    }
+
+    .transformation-step {
+      grid-template-columns: 1fr;
+      gap: 0.45rem;
+    }
+
+    .step-line {
+      width: 2px;
+      height: 1.4rem;
+      margin-left: 2.2rem;
+      background: linear-gradient(180deg, rgba(212, 106, 93, 0.32), rgba(78, 202, 194, 0.9));
+    }
+  }
+</style>
