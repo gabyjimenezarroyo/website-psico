@@ -1,11 +1,80 @@
 ---
 import CTASection from "@components/CTASection.astro";
-import PageHero from "@components/PageHero.astro";
+import Button from "@components/Button.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Sobre Gaby" description="Conoce el enfoque terapeutico de Gaby Jimenez: calido, humano y orientado a recuperar claridad emocional.">
-  <PageHero eyebrow="Sobre Gaby" title="Terapia con presencia, criterio y calidez" description="Gaby Jimenez acompana procesos de recuperacion emocional desde un enfoque cognitivo conductual, humano y cercano, especialmente en mujeres que han vivido manipulacion, abuso emocional o codependencia." image="/images/g_pugs.jpg" imageAlt="Gaby Jimenez con sus pugs" />
+  <section class="section-pad overflow-hidden">
+    <div class="container-premium grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <div>
+        <p class="eyebrow">Sobre Gaby</p>
+        <h1 class="mt-5 max-w-4xl font-display text-5xl font-bold leading-[1.05] text-ink md:text-7xl">
+          Terapia con presencia, criterio y calidez
+        </h1>
+        <div class="mt-7 max-w-3xl space-y-5 text-lg leading-8 text-ink/72">
+          <p>Soy Gaby Jiménez, Licenciada en Psicología y terapeuta clínica desde hace más de 17 años.</p>
+          <p>
+            Tengo 42 años, estoy casada, soy mamá de una hija adolescente y comparto mi vida con dos pugs
+            que amo profundamente. 
+          </p>
+          <p>
+            Durante nuestras sesiones virtuales, es muy probable que alguno aparezca
+            saludando o acompañándome durante la consulta.
+          </p>
+          <p>
+            Amo mi familia, viajar a conocer lugares nuevos y crear recuerdos con las personas que quiero.
+            La vida está hecha de vínculos, experiencias y momentos que nos transforman.
+          </p>
+          <p>
+            Desde que me gradué he trabajado exclusivamente en psicología clínica, 
+            mateninedo la misma pasión por lo que hago como el primer día.
+          </p>
+          <p>
+            Trabajo principalmente con personas que atraviesan relaciones tóxicas, dependencia emocional,
+            codependencia, abuso psicológico, conductas compulsivas y adicciones. 
+            Estas poblaciones cargan mucho dolor y mucho juicio.
+          </p>
+          <p>
+            Con frecuencia escuchan frases como: "si te hace daño, andate", "si quisiera cambiar ya lo
+            habría hecho" o "estás ahí porque querés". La realidad es muchísimo más compleja que eso.
+          </p>
+          <p>
+            Sé que salir de una relación dañina, romper un patrón emocional o enfrentar una adicción no es
+            solo cuestión de voluntad. 
+            Requiere comprensión, herramientas, acompañamiento y mucho más valor del que las personas imaginan.
+          </p>
+          <p>
+            Por eso amo trabajar con esta población. Porque detrás de cada historia hay una persona
+            intentando sobrevivir de la mejor manera que puede.
+          </p>
+          <p>
+            Mi compromiso es ofrecer un espacio seguro, profesional y libre de juicio, donde puedas entender
+            lo que te está pasando y encontrar una forma diferente de seguir adelante.
+          </p>
+          <p>Nadie debería atravesar solo aquello que le está rompiendo por dentro.</p>
+          
+          <blockquote class="border-l-4 border-primary pl-5 font-display text-2xl font-semibold leading-9 text-secondary">
+            "Lo más importante no es lo que nos sucede. Lo más importante es lo que hacemos con ello."
+            <cite class="mt-3 block font-sans text-base font-semibold not-italic text-ink/62">— Edith Eger</cite>
+          </blockquote>
+        </div>
+        <div class="mt-8">
+          <Button href="/contact">Agendar consulta</Button>
+        </div>
+      </div>
+      <div class="relative lg:sticky lg:top-28">
+        <div class="absolute -inset-4 rounded-[2rem] bg-primary/15 blur-3xl"></div>
+        <img
+          src="/images/g_pugs.jpg"
+          alt="Gaby Jimenez con sus pugs"
+          class="relative aspect-[4/5] w-full rounded-[2rem] object-cover shadow-soft"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
   <section class="section-pad bg-white">
     <div class="container-premium grid gap-8 md:grid-cols-3">
       {["Cognitive Behavioral Therapist", "Human-centered approach", "Online and in-person sessions"].map((item) => (
