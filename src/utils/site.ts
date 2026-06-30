@@ -1,10 +1,10 @@
 export const site = {
-  name: "Gaby Jimenez Psicologia",
-  professionalName: "Gaby Jimenez",
+  name: "Gaby Jiménez Psicología",
+  professionalName: "Gaby Jiménez",
   title: "Psicóloga",
   url: "https://gabrielajimenezpsicologia.com",
   description:
-    "Terapia para mujeres que quieren recuperar libertad emocional despues de abuso emocional, manipulacion, relaciones toxicas y codependencia.",
+    "Terapia para mujeres que quieren recuperar libertad emocional después de abuso emocional, manipulación, relaciones tóxicas y codependencia.",
   phone: "+506 8871 9995",
   whatsapp: "https://wa.me/50688719995",
   instagram: "https://www.instagram.com/psicologa_gaby_jimenez/",
@@ -23,15 +23,9 @@ type NavGroup = {
 
 export const navItems: Array<NavLink | NavGroup> = [
   { href: "/", label: "Inicio" },
+  { href: "/services", label: "Servicios" },
   {
-    label: "Servicios",
-    children: [
-      { href: "/emotional-abuse", label: "Abuso emocional" },
-      { href: "/codependencia", label: "Dependencia emocional" },
-    ],
-  },
-  {
-    label: "Adicciónes",
+    label: "Adicciones",
     children: [
       { href: "/cuestionarios/adiccion-de-otros-me-afecta", label: "¿Me afecta la adicción de otros?" },
       { href: "/cuestionarios/adicciones", label: "¿Mi relación con esta conducta se está volviendo problemática?" },

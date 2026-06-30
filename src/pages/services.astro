@@ -1,22 +1,223 @@
 ---
 import CTASection from "@components/CTASection.astro";
-import InfoCards from "@components/InfoCards.astro";
-import PageHero from "@components/PageHero.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 const services = [
-  { title: "Individual Therapy", text: "Proceso destacado para trabajar abuso emocional, limites, ansiedad vincular, autoestima y recuperacion personal." },
-  { title: "Couples Therapy", text: "Espacio para revisar patrones relacionales, comunicacion, acuerdos y conflictos persistentes." },
-  { title: "Family Therapy", text: "Acompanamiento para dinamicas familiares que necesitan limites, escucha y formas mas sanas de vincularse." },
+  "Ansiedad y regulación emocional",
+  "Relaciones afectivas, dependencia emocional y codependencia",
+  "Autoestima y autoconfianza",
+  "Abuso emocional y relaciones tóxicas",
+  "Duelo y rupturas emocionales",
+  "Terapia de pareja y conflictos familiares",
+  "Acompañamiento en adicciones",
+  "Trastornos de personalidad y del estado de ánimo",
 ];
 ---
 
-<BaseLayout title="Servicios de terapia" description="Terapia individual, de pareja y familiar con Gaby Jimenez.">
-  <PageHero eyebrow="Servicios" title="Procesos terapeuticos para recuperar claridad y estabilidad" description="Cada proceso se adapta a tu historia, tus recursos y el momento emocional que estas atravesando." />
-  <section class="section-pad bg-white">
-    <div class="container-premium">
-      <InfoCards items={services} />
+<BaseLayout
+  title="Servicios de terapia"
+  description="Terapia psicológica presencial y virtual para ansiedad, relaciones afectivas, autoestima, abuso emocional, duelo, pareja, familia, adicciones y estado de ánimo."
+>
+  <section class="services-hero">
+    <div class="container-premium services-shell">
+      <div class="services-intro">
+        <p class="eyebrow">Servicios</p>
+        <h1>¿Cómo puedo ayudarte?</h1>
+        <p>
+          Un espacio terapéutico para adultos, diseñado para ordenar lo que estás viviendo,
+          fortalecer tus recursos emocionales y acompañarte con claridad.
+        </p>
+      </div>
+
+      <div class="services-list" aria-label="Áreas de acompañamiento psicológico">
+        {services.map((service, index) => (
+          <article class="service-row" style={`--delay:${index * 45}ms;`}>
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M20 6 9.5 16.5 4 11" />
+              </svg>
+            </span>
+            <p>{service}</p>
+          </article>
+        ))}
+      </div>
+
+      <aside class="services-note">
+        <span aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img">
+            <path d="M12 21s7-4.35 7-11a7 7 0 1 0-14 0c0 6.65 7 11 7 11Z" />
+            <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+          </svg>
+        </span>
+        <strong>Consulta presencial y virtual a adultos</strong>
+      </aside>
     </div>
   </section>
+
   <CTASection />
 </BaseLayout>
+
+<style>
+  .services-hero {
+    overflow: hidden;
+    padding-block: clamp(4.5rem, 8vw, 7rem);
+    background:
+      radial-gradient(circle at 16% 18%, rgba(141, 224, 216, 0.22), transparent 24rem),
+      radial-gradient(circle at 88% 26%, rgba(212, 106, 93, 0.12), transparent 22rem),
+      linear-gradient(180deg, #eef9f8 0%, #ffffff 78%);
+  }
+
+  .services-shell {
+    position: relative;
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .services-intro {
+    position: relative;
+    z-index: 1;
+    max-width: 48rem;
+  }
+
+  .services-intro h1 {
+    margin: 0.8rem 0 0;
+    max-width: 42rem;
+    color: #2f6d6a;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(3.4rem, 8vw, 6.9rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 0.96;
+  }
+
+  .services-intro h1::first-letter {
+    color: #d98994;
+  }
+
+  .services-intro p {
+    margin: 1.4rem 0 0;
+    max-width: 39rem;
+    color: rgba(26, 26, 26, 0.68);
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .services-list {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 0.95rem;
+    max-width: 54rem;
+  }
+
+  .service-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.95rem;
+  }
+
+  .service-row span {
+    display: grid;
+    flex: 0 0 auto;
+    width: 3.05rem;
+    height: 3.05rem;
+    place-items: center;
+    border: 3px solid rgba(216, 137, 148, 0.54);
+    border-radius: 999px;
+    color: #d98994;
+  }
+
+  .service-row svg {
+    width: 1.95rem;
+    height: 1.95rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.5;
+  }
+
+  .service-row p {
+    margin: 0;
+    width: fit-content;
+    max-width: 100%;
+    border-radius: 0.65rem;
+    background: #2f6d6a;
+    padding: 0.48rem 0.78rem 0.55rem;
+    color: #ffffff;
+    font-size: clamp(1.08rem, 2.35vw, 1.72rem);
+    font-weight: 500;
+    line-height: 1.18;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    box-shadow: 0 14px 30px rgba(47, 109, 106, 0.12);
+  }
+
+  .services-note {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    padding: 0.8rem 1.25rem 0.8rem 0.8rem;
+    color: #2f6d6a;
+    box-shadow: 0 18px 45px rgba(47, 109, 106, 0.11);
+    backdrop-filter: blur(14px);
+  }
+
+  .services-note span {
+    display: grid;
+    flex: 0 0 auto;
+    width: 3.4rem;
+    height: 3.4rem;
+    place-items: center;
+    border-radius: 999px;
+    background: rgba(216, 137, 148, 0.24);
+    color: #2f6d6a;
+  }
+
+  .services-note svg {
+    width: 1.85rem;
+    height: 1.85rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .services-note strong {
+    font-size: clamp(1.05rem, 2.3vw, 1.6rem);
+    line-height: 1.25;
+  }
+
+  @media (max-width: 640px) {
+    .services-intro h1 {
+      font-size: clamp(3rem, 15vw, 4.2rem);
+    }
+
+    .service-row {
+      gap: 0.65rem;
+    }
+
+    .service-row span {
+      width: 2.45rem;
+      height: 2.45rem;
+      border-width: 2px;
+    }
+
+    .service-row svg {
+      width: 1.55rem;
+      height: 1.55rem;
+    }
+
+    .service-row p {
+      font-size: 1.18rem;
+    }
+  }
+</style>
