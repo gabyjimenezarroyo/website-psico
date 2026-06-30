@@ -1,6 +1,4 @@
 ---
-import Button from "@components/Button.astro";
-
 interface Props {
   title?: string;
   text?: string;
@@ -13,14 +11,73 @@ const {
 ---
 
 <section class="section-pad">
-  <div class="container-premium rounded-[2rem] bg-secondary p-8 text-white shadow-lift md:p-12">
-    <div class="grid items-center gap-8 md:grid-cols-[1fr_auto]">
-      <div>
+  <div class="cta-panel container-premium">
+    <div class="relative z-10 grid items-center gap-8 md:grid-cols-[1fr_auto]">
+      <div class="min-w-0">
         <p class="text-sm font-bold uppercase tracking-[0.14em] text-accent">Siguiente paso</p>
         <h2 class="mt-4 max-w-3xl font-display text-4xl font-bold leading-tight md:text-5xl">{title}</h2>
         <p class="mt-5 max-w-2xl leading-8 text-white/78">{text}</p>
       </div>
-      <Button href="/contact" variant="secondary" class="bg-white">Agendar consulta</Button>
+      <a href="/contact" class="cta-button">Agendar consulta</a>
     </div>
   </div>
 </section>
+
+<style>
+  .cta-panel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(141, 224, 216, 0.22), transparent 18rem),
+      linear-gradient(135deg, #2f6d6a 0%, #3d7671 100%);
+    padding: clamp(2rem, 5vw, 3rem);
+    color: #ffffff;
+    box-shadow: 0 26px 80px rgba(47, 109, 106, 0.18);
+  }
+
+  .cta-panel::after {
+    content: "";
+    position: absolute;
+    inset: auto -5rem -7rem auto;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .cta-button {
+    display: inline-flex;
+    min-height: 3.35rem;
+    align-items: center;
+    justify-content: center;
+    justify-self: start;
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    border-radius: 999px;
+    background: #ffffff;
+    padding: 0.85rem 1.4rem;
+    color: #2f6d6a;
+    font-size: 0.92rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition:
+      transform 180ms ease,
+      background 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .cta-button:hover,
+  .cta-button:focus-visible {
+    transform: translateY(-2px);
+    border-color: #8de0d8;
+    background: #f7fffe;
+    outline: none;
+  }
+
+  @media (min-width: 768px) {
+    .cta-button {
+      justify-self: end;
+      min-width: 11rem;
+    }
+  }
+</style>
