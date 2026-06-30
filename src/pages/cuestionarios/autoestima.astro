@@ -78,12 +78,14 @@ const disclaimer =
 >
   <PageHero
     eyebrow="Cuestionarios"
-    title="Cuestionario: ¿Cómo está tu autoestima actualmente?"
+    title="¿Cómo está tu autoestima actualmente?"
     description="Una herramienta breve para observar autocrítica, comparación, exigencia personal y reconocimiento de tu propio valor."
     primaryLabel="Responder cuestionario"
     primaryHref="#cuestionario"
     secondaryLabel="Agendar consulta"
     secondaryHref="/contact"
+    image="/images/consultorio.jpg"
+    imageAlt="Consultorio psicológico cálido"
   />
 
   <section id="cuestionario" class="section-pad bg-white">
@@ -91,7 +93,7 @@ const disclaimer =
       <QuestionnaireThermometer
         id="autoestima-questionnaire"
         eyebrow="Termómetro emocional"
-        title="Cuestionario: ¿Cómo está tu autoestima actualmente?"
+        title="¿Cómo está tu autoestima actualmente?"
         intro="Responde Sí o No a cada afirmación. Al completar las 10 preguntas, verás tu resultado en un termómetro emocional por colores."
         questions={questions}
         resultBands={resultBands}
