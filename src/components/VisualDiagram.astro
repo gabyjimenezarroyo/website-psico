@@ -396,34 +396,64 @@ const concepts = [
 
   @media (max-width: 640px) {
     .map-canvas {
-      min-height: 42rem;
+      display: grid;
+      gap: 0.75rem;
+      min-height: auto;
+      padding: 1rem;
+      padding-top: 9rem;
+    }
+
+    .map-lines {
+      display: none;
     }
 
     .map-core {
-      inline-size: 12.5rem;
-      min-height: 8rem;
+      inset: 1rem 1rem auto;
+      inline-size: auto;
+      min-height: 6.75rem;
+      padding: 1rem;
+      transform: none;
+      border-radius: 1.5rem;
+      text-align: left;
+      place-items: start;
+    }
+
+    .map-core strong {
+      max-width: none;
+      font-size: 1.85rem;
+      line-height: 1;
     }
 
     .map-node {
-      inline-size: min(14.5rem, calc(100% - 1.5rem));
-      padding-right: 0.8rem;
+      position: relative;
+      top: auto;
+      right: auto;
+      left: auto;
+      inline-size: 100%;
+      transform: none;
+      border-radius: 1.15rem;
+      padding: 0.8rem;
     }
 
-    .map-node-left {
-      left: 0.75rem;
-    }
-
-    .map-node-right,
-    .map-node-right-top {
-      right: 0.75rem;
+    .map-node:hover,
+    .map-node:focus-visible,
+    .map-node-center:hover,
+    .map-node-center:focus-visible,
+    #map-abuso:checked ~ .map-canvas label[for="map-abuso"],
+    #map-gaslighting:checked ~ .map-canvas label[for="map-gaslighting"],
+    #map-trauma:checked ~ .map-canvas label[for="map-trauma"],
+    #map-manipulacion:checked ~ .map-canvas label[for="map-manipulacion"],
+    #map-codependencia:checked ~ .map-canvas label[for="map-codependencia"],
+    #map-manipulacion:checked ~ .map-canvas label[for="map-manipulacion"] {
+      transform: none;
     }
 
     .node-copy strong {
-      font-size: 1rem;
+      font-size: 1.18rem;
     }
 
     .node-copy small {
-      display: none;
+      display: block;
     }
 
     .map-details {
