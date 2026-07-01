@@ -11,6 +11,7 @@ interface Props {
   secondaryHref?: string;
   image?: string;
   imageAlt?: string;
+  showActions?: boolean;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   secondaryHref = "/contact",
   image = "/images/gabriela-therapy-space.png",
   imageAlt = "Espacio terapeutico calido y sereno",
+  showActions = true,
 } = Astro.props;
 ---
 
@@ -32,10 +34,14 @@ const {
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h1 class="mt-5 max-w-4xl font-display text-5xl font-bold leading-[1.05] text-ink md:text-7xl">{title}</h1>
       <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/70">{description}</p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <Button href={primaryHref}>{primaryLabel}</Button>
-        {secondaryLabel && <Button href={secondaryHref} variant="secondary">{secondaryLabel}</Button>}
-      </div>
+      {
+        showActions && (
+          <div class="mt-8 flex flex-wrap gap-4">
+            <Button href={primaryHref}>{primaryLabel}</Button>
+            {secondaryLabel && <Button href={secondaryHref} variant="secondary">{secondaryLabel}</Button>}
+          </div>
+        )
+      }
     </div>
     <div class="relative">
       <div class="absolute -inset-4 rounded-[2rem] bg-primary/15 blur-3xl"></div>
