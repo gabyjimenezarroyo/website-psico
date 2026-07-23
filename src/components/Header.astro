@@ -80,7 +80,10 @@ const current = Astro.url.pathname;
       </span>
     </button>
   </nav>
-  <div id="mobile-navigation" class="hidden border-t border-black/5 bg-white lg:hidden">
+  <div
+    id="mobile-navigation"
+    class="hidden max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-y-contain border-t border-black/5 bg-white [-webkit-overflow-scrolling:touch] [max-height:calc(100dvh-5rem)] lg:hidden"
+  >
     <div class="container-premium space-y-2 py-4">
       {
         navItems.map((item) =>
