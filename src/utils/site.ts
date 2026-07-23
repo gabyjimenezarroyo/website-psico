@@ -25,7 +25,7 @@ export const navItems: Array<NavLink | NavGroup> = [
   { href: "/", label: "Inicio" },
   { href: "/services", label: "Servicios" },
   {
-    label: "Adicciones",
+    label: "Enfermedad de la adicción",
     children: [
       { href: "/cuestionarios/adiccion-de-otros-me-afecta", label: "¿Me afecta la adicción de otros?" },
       { href: "/cuestionarios/adicciones", label: "¿Mi relación con esta conducta se está volviendo problemática?" },
