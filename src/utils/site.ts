@@ -53,6 +53,7 @@ export const navItems: Array<NavLink | NavGroup> = [
       { href: "/cuestionarios/rasgos-narcicistas", label: "Rasgos narcisistas" },
     ],
   },
+  { href: "/banderas-rojas-verdes-relacion", label: "Green/Red Flags" },
   { href: "/gaby", label: "Sobre Gaby" },
   { href: "/contact", label: "Contacto" },
 ];

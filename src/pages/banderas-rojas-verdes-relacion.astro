@@ -1,0 +1,643 @@
+---
+import Button from "@components/Button.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const redFlags = [
+  {
+    title: "Tus emociones son minimizadas",
+    text: "Cuando expresás una preocupación, la respuesta suele ser descalificar, ridiculizar o ignorar lo que sentís.",
+    question: "¿Te sentís escuchada cuando algo te duele?",
+  },
+  {
+    title: "La responsabilidad siempre recae sobre una sola persona",
+    text: "Los conflictos terminan teniendo siempre al mismo responsable.",
+    question: "¿Existe espacio para la responsabilidad compartida?",
+  },
+  {
+    title: "Vivís más confundida que tranquila",
+    text: "Las relaciones saludables generan claridad. Las dañinas suelen generar incertidumbre constante.",
+    question: "¿Cómo te sentís la mayor parte del tiempo dentro de la relación?",
+  },
+  {
+    title: "Tus necesidades pierden importancia",
+    text: "Con el tiempo dejás de pedir, esperar o expresar lo que necesitás.",
+    question: "¿Tus necesidades tienen espacio dentro de la relación?",
+  },
+  {
+    title: "Tu bienestar disminuye",
+    text: "Una relación no resuelve todos los problemas. Pero tampoco debería convertirse en una fuente constante de sufrimiento.",
+    question: "¿Tu vida está mejor o peor desde que comenzó esta relación?",
+  },
+];
+
+const greenFlags = [
+  {
+    title: "Podés ser vos misma",
+    text: "No necesitás actuar, ocultarte ni modificar quién sos para sentirte aceptada.",
+    question: "¿Sentís libertad para mostrarte auténticamente?",
+  },
+  {
+    title: "Existe respeto durante los desacuerdos",
+    text: "Los conflictos pueden existir sin humillación ni desprecio.",
+    question: "¿Cómo se manejan las diferencias en la relación?",
+  },
+  {
+    title: "Ambas personas pueden influir",
+    text: "Las decisiones, necesidades y opiniones tienen valor para ambos.",
+    question: "¿Sentís que tu voz tiene peso dentro de la relación?",
+  },
+  {
+    title: "Hay apoyo mutuo",
+    text: "El cuidado emocional circula en ambas direcciones.",
+    question: "¿Te sentís acompañada cuando atravesás momentos difíciles?",
+  },
+  {
+    title: "Tu bienestar crece",
+    text: "Las relaciones saludables suelen expandir la vida, no reducirla.",
+    question: "¿La relación te ayuda a crecer como persona?",
+  },
+];
+---
+
+<BaseLayout
+  title="Banderas rojas y banderas verdes en una relación"
+  description="Cómo reconocer señales de alerta y señales de bienestar emocional en una relación. Guía por Gaby Jiménez, Psicóloga."
+  canonicalPath="/banderas-rojas-verdes-relacion"
+>
+  <section class="flags-hero">
+    <div class="container-premium flags-hero-grid">
+      <div class="flags-hero-copy">
+        <p class="eyebrow">Relaciones y bienestar emocional</p>
+        <h1>Banderas rojas y banderas verdes en una relación</h1>
+        <p class="hero-lead">Cómo reconocer señales de alerta y señales de bienestar emocional.</p>
+        <p class="hero-author">Por Gaby Jiménez - Psicóloga</p>
+        <div class="hero-actions">
+          <Button href="/contact">Agendar consulta</Button>
+          <a href="#banderas" class="hero-link">Ver señales</a>
+        </div>
+      </div>
+
+      <div class="signal-board" aria-label="Resumen visual de banderas rojas y verdes">
+        <div class="signal-card signal-card-red">
+          <span class="signal-icon" aria-hidden="true">!</span>
+          <p>Banderas rojas</p>
+          <strong>Señales que te restan claridad, paz y libertad emocional.</strong>
+        </div>
+        <div class="signal-divider" aria-hidden="true">
+          <span>mirar con honestidad</span>
+        </div>
+        <div class="signal-card signal-card-green">
+          <span class="signal-icon" aria-hidden="true">✓</span>
+          <p>Banderas verdes</p>
+          <strong>Señales que sostienen respeto, seguridad y crecimiento.</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro-section">
+    <div class="container-premium intro-panel">
+      <div>
+        <p class="eyebrow">Introducción</p>
+        <h2>Reconocer lo dañino importa. Reconocer lo sano también.</h2>
+      </div>
+      <div class="intro-copy">
+        <p>Muchas personas aprenden a identificar relaciones dañinas. Sin embargo, pocas aprenden a reconocer cómo luce una relación saludable.</p>
+        <p>Comprender ambas cosas puede ayudarte a tomar decisiones más conscientes sobre tus vínculos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="banderas" class="section-pad bg-white">
+    <div class="container-premium">
+      <div class="flags-columns">
+        <section class="flag-column red-column" aria-labelledby="banderas-rojas-title">
+          <div class="column-heading">
+            <span class="column-mark" aria-hidden="true">!</span>
+            <div>
+              <p class="eyebrow">5 banderas rojas</p>
+              <h2 id="banderas-rojas-title">Cuando la relación empieza a doler más de lo que sostiene</h2>
+            </div>
+          </div>
+          <div class="flag-list">
+            {
+              redFlags.map((flag, index) => (
+                <article class="flag-card">
+                  <span class="flag-number">{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{flag.title}</h3>
+                  <p>{flag.text}</p>
+                  <div class="reflection-box">
+                    <span>Reflexión</span>
+                    <strong>{flag.question}</strong>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="flag-column green-column" aria-labelledby="banderas-verdes-title">
+          <div class="column-heading">
+            <span class="column-mark" aria-hidden="true">✓</span>
+            <div>
+              <p class="eyebrow">5 banderas verdes</p>
+              <h2 id="banderas-verdes-title">Cuando el vínculo también hace espacio para tu bienestar</h2>
+            </div>
+          </div>
+          <div class="flag-list">
+            {
+              greenFlags.map((flag, index) => (
+                <article class="flag-card">
+                  <span class="flag-number">{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{flag.title}</h3>
+                  <p>{flag.text}</p>
+                  <div class="reflection-box">
+                    <span>Reflexión</span>
+                    <strong>{flag.question}</strong>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="remember-section">
+    <div class="container-premium remember-panel">
+      <div class="remember-badge" aria-hidden="true">GJ</div>
+      <div>
+        <p class="eyebrow">Recordá</p>
+        <h2>Las relaciones perfectas no existen. Las relaciones saludables sí.</h2>
+        <p>
+          La diferencia suele encontrarse en la forma en que las personas enfrentan los desafíos, los conflictos y las necesidades mutuas.
+        </p>
+      </div>
+      <a href="/contact" class="remember-button">Agendar una consulta</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .flags-hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(4.5rem, 8vw, 7.5rem);
+  }
+
+  .flags-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, rgba(212, 106, 93, 0.12), transparent 42%),
+      radial-gradient(circle at 86% 15%, rgba(78, 202, 194, 0.24), transparent 28rem);
+    pointer-events: none;
+  }
+
+  .flags-hero-grid {
+    position: relative;
+    display: grid;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .flags-hero-copy h1 {
+    margin: 1.1rem 0 0;
+    max-width: 68rem;
+    color: #1a1a1a;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(3.1rem, 7.5vw, 7.7rem);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 0.98;
+  }
+
+  .hero-lead {
+    margin: 1.4rem 0 0;
+    max-width: 40rem;
+    color: rgba(26, 26, 26, 0.72);
+    font-size: clamp(1.05rem, 2vw, 1.28rem);
+    line-height: 1.75;
+  }
+
+  .hero-author {
+    margin: 1rem 0 0;
+    color: #2f6d6a;
+    font-size: 0.95rem;
+    font-weight: 800;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .hero-link {
+    color: #2f6d6a;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-decoration: underline;
+    text-decoration-color: rgba(78, 202, 194, 0.58);
+    text-underline-offset: 5px;
+  }
+
+  .signal-board {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    max-width: 58rem;
+  }
+
+  .signal-board::before {
+    content: "";
+    position: absolute;
+    inset: -1.2rem;
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.58);
+    box-shadow: 0 28px 90px rgba(26, 26, 26, 0.08);
+  }
+
+  .signal-card,
+  .signal-divider {
+    position: relative;
+    z-index: 1;
+  }
+
+  .signal-card {
+    min-height: 13rem;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    padding: clamp(1.35rem, 3vw, 1.8rem);
+    color: #ffffff;
+  }
+
+  .signal-card::after {
+    content: "";
+    position: absolute;
+    right: -3.5rem;
+    bottom: -4rem;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .signal-card-red {
+    background:
+      radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.18), transparent 12rem),
+      linear-gradient(135deg, #a84942, #d46a5d);
+  }
+
+  .signal-card-green {
+    background:
+      radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.18), transparent 12rem),
+      linear-gradient(135deg, #2f6d6a, #4ecac2);
+  }
+
+  .signal-icon {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    font-size: 1.35rem;
+    font-weight: 900;
+  }
+
+  .signal-card p {
+    margin: 1.2rem 0 0;
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .signal-card strong {
+    display: block;
+    margin-top: 0.75rem;
+    max-width: 22rem;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.65rem, 4vw, 2.35rem);
+    line-height: 1.05;
+  }
+
+  .signal-divider {
+    display: grid;
+    min-height: 3.6rem;
+    place-items: center;
+    border: 1px dashed rgba(47, 109, 106, 0.3);
+    border-radius: 999px;
+    background: #ffffff;
+    color: #2f6d6a;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .intro-section {
+    padding-block: clamp(2rem, 5vw, 4rem);
+  }
+
+  .intro-panel {
+    display: grid;
+    gap: 2rem;
+    border-radius: 2rem;
+    background:
+      radial-gradient(circle at 94% 12%, rgba(141, 224, 216, 0.2), transparent 16rem),
+      linear-gradient(145deg, #ffffff, #f8fbfa);
+    padding: clamp(1.6rem, 4vw, 2.5rem);
+    box-shadow: 0 24px 70px rgba(26, 26, 26, 0.08);
+  }
+
+  .intro-panel h2 {
+    margin: 1rem 0 0;
+    max-width: 33rem;
+    color: #1a1a1a;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.3rem, 5vw, 4.4rem);
+    line-height: 1;
+  }
+
+  .intro-copy {
+    display: grid;
+    align-content: center;
+    gap: 1rem;
+    color: rgba(26, 26, 26, 0.7);
+    font-size: 1.03rem;
+    line-height: 1.8;
+  }
+
+  .intro-copy p {
+    margin: 0;
+  }
+
+  .flags-columns {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .flag-column {
+    border-radius: 2rem;
+    padding: clamp(1rem, 2.5vw, 1.3rem);
+  }
+
+  .red-column {
+    background:
+      linear-gradient(180deg, rgba(212, 106, 93, 0.12), rgba(212, 106, 93, 0.04)),
+      #fffafa;
+  }
+
+  .green-column {
+    background:
+      linear-gradient(180deg, rgba(78, 202, 194, 0.16), rgba(78, 202, 194, 0.05)),
+      #f7fffe;
+  }
+
+  .column-heading {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem;
+    padding: clamp(0.8rem, 2vw, 1.1rem);
+  }
+
+  .column-mark {
+    display: grid;
+    width: 3.2rem;
+    height: 3.2rem;
+    place-items: center;
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 900;
+  }
+
+  .red-column .column-mark {
+    background: #d46a5d;
+  }
+
+  .green-column .column-mark {
+    background: #2f6d6a;
+  }
+
+  .column-heading h2 {
+    margin: 0.65rem 0 0;
+    color: #1a1a1a;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.03;
+  }
+
+  .flag-list {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 0.6rem;
+  }
+
+  .flag-card {
+    position: relative;
+    display: grid;
+    min-height: 15rem;
+    overflow: hidden;
+    border: 1px solid rgba(26, 26, 26, 0.06);
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.25rem;
+    box-shadow: 0 18px 46px rgba(26, 26, 26, 0.06);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .flag-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 60px rgba(26, 26, 26, 0.1);
+  }
+
+  .flag-number {
+    color: rgba(26, 26, 26, 0.22);
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .flag-card h3 {
+    margin: 0.65rem 0 0;
+    color: #1a1a1a;
+    font-size: 1.15rem;
+    font-weight: 900;
+    line-height: 1.25;
+  }
+
+  .flag-card p {
+    margin: 0.75rem 0 0;
+    color: rgba(26, 26, 26, 0.68);
+    line-height: 1.65;
+  }
+
+  .reflection-box {
+    align-self: end;
+    margin-top: 1.2rem;
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+
+  .red-column .reflection-box {
+    background: rgba(212, 106, 93, 0.1);
+  }
+
+  .green-column .reflection-box {
+    background: rgba(78, 202, 194, 0.12);
+  }
+
+  .reflection-box span {
+    display: block;
+    color: #2f6d6a;
+    font-size: 0.74rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .reflection-box strong {
+    display: block;
+    margin-top: 0.35rem;
+    color: #1a1a1a;
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+
+  .remember-section {
+    padding-block: clamp(4.5rem, 8vw, 7rem);
+  }
+
+  .remember-panel {
+    position: relative;
+    display: grid;
+    align-items: center;
+    gap: 1.5rem;
+    overflow: hidden;
+    border-radius: 2rem;
+    background:
+      radial-gradient(circle at 90% 12%, rgba(141, 224, 216, 0.26), transparent 17rem),
+      linear-gradient(135deg, #2f6d6a 0%, #3d7671 100%);
+    padding: clamp(1.7rem, 5vw, 3rem);
+    color: #ffffff;
+    box-shadow: 0 26px 80px rgba(47, 109, 106, 0.18);
+  }
+
+  .remember-panel .eyebrow {
+    color: #8de0d8;
+  }
+
+  .remember-badge {
+    display: grid;
+    width: 4rem;
+    height: 4rem;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.13);
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .remember-panel h2 {
+    margin: 0.9rem 0 0;
+    max-width: 48rem;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.35rem, 5vw, 4.6rem);
+    line-height: 1;
+  }
+
+  .remember-panel p:not(.eyebrow) {
+    margin: 1.1rem 0 0;
+    max-width: 43rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+
+  .remember-button {
+    display: inline-flex;
+    min-height: 3.35rem;
+    align-items: center;
+    justify-content: center;
+    justify-self: start;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 999px;
+    background: #ffffff;
+    padding: 0.85rem 1.4rem;
+    color: #2f6d6a;
+    font-size: 0.92rem;
+    font-weight: 900;
+    text-decoration: none;
+    transition:
+      transform 180ms ease,
+      background 180ms ease;
+  }
+
+  .remember-button:hover,
+  .remember-button:focus-visible {
+    transform: translateY(-2px);
+    background: #f7fffe;
+    outline: none;
+  }
+
+  @media (min-width: 900px) {
+    .flags-hero-copy {
+      max-width: 70rem;
+    }
+
+    .signal-board {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      max-width: none;
+      align-items: stretch;
+    }
+
+    .signal-divider {
+      min-width: 4.5rem;
+      min-height: auto;
+      padding-inline: 1rem;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
+
+    .intro-panel {
+      grid-template-columns: 0.95fr 1.05fr;
+    }
+
+    .flags-columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    .remember-panel {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+
+    .remember-button {
+      justify-self: end;
+      min-width: 12rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .column-heading {
+      grid-template-columns: 1fr;
+    }
+
+    .flag-card {
+      min-height: auto;
+    }
+  }
+</style>
